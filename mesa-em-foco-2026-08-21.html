@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mesa em Foco — Edição 01 · 21 ago 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500;1,9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFDF7;
+    --paper-dim:#F3EEE2;
+    --ink:#181410;
+    --ink-soft:#5c554c;
+    --chili:#E7412C;
+    --saffron:#D98C00;
+    --plum:#5B1F44;
+    --basil:#2B6A4C;
+    --buzz:#D6336C;
+    --navy:#212E56;
+    --rule: rgba(24,20,16,0.14);
+    --mark: #FCE8A8;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  mark{ background:var(--mark); color:var(--ink); padding:0 2px;}
+
+  /* MASTHEAD */
+  header.masthead{
+    padding:22px 24px 16px;
+    border-bottom:4px solid var(--ink);
+    background:var(--paper);
+    position:sticky; top:0; z-index:50;
+  }
+  .masthead-row{
+    max-width:900px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .back-link{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--ink-soft);
+  }
+  .wordmark-sm{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:1.5rem;
+    letter-spacing:-0.02em;
+  }
+  .wordmark-sm em{ font-style:italic; font-weight:500; color:var(--chili);}
+
+  /* IN-PAGE SEARCH */
+  .find-bar{
+    max-width:900px;
+    margin:0 auto;
+    padding-top:12px;
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .find-bar input{
+    flex:1;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    padding:9px 12px;
+    border:1.5px solid var(--ink);
+    background:var(--paper-dim);
+  }
+  .find-bar button{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    padding:9px 12px;
+    border:1.5px solid var(--ink);
+    background:var(--ink);
+    color:var(--paper);
+    cursor:pointer;
+  }
+  .find-status{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    color:var(--ink-soft);
+    max-width:900px;
+    margin:6px auto 0;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+
+  /* HERO */
+  .hero{
+    max-width:900px;
+    margin:0 auto;
+    padding:44px 24px 30px;
+  }
+  .hero .kicker{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--chili);
+    margin:0 0 14px;
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(2.2rem, 6vw, 3.6rem);
+    line-height:1.02;
+    margin:0 0 18px;
+    letter-spacing:-0.01em;
+  }
+  .hero .dek{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:1.25rem;
+    color:var(--ink-soft);
+    max-width:640px;
+    line-height:1.4;
+  }
+
+  /* STAT BANNER */
+  .stat-banner{
+    max-width:900px;
+    margin:0 auto 10px;
+    padding:0 24px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--ink);
+    border:1.5px solid var(--ink);
+  }
+  .stat{
+    background:var(--paper);
+    padding:20px 18px;
+  }
+  .stat .num{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:2rem;
+    line-height:1;
+  }
+  .stat .lbl{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+
+  /* NAV JUMP */
+  nav.toc{
+    max-width:900px;
+    margin:36px auto 0;
+    padding:0 24px;
+    display:flex;
+    gap:0;
+    flex-wrap:wrap;
+    border-top:1.5px solid var(--ink);
+    border-bottom:1.5px solid var(--ink);
+  }
+  nav.toc a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    text-decoration:none;
+    padding:12px 16px;
+    border-right:1px solid var(--rule);
+    color:var(--ink);
+  }
+  nav.toc a:last-child{border-right:none;}
+
+  /* SECTIONS */
+  section.block{
+    max-width:900px;
+    margin:0 auto;
+    padding:46px 24px 10px;
+    scroll-margin-top:110px;
+  }
+  .block-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:26px;
+    border-left:8px solid var(--section-color, var(--chili));
+    padding-left:16px;
+  }
+  .block-head .em{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  .block-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:1.9rem;
+    margin:0;
+  }
+
+  article.item{
+    margin-bottom:30px;
+    padding-bottom:28px;
+    border-bottom:1px solid var(--rule);
+  }
+  article.item:last-child{ border-bottom:none; }
+  article.item h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.3rem;
+    margin:0 0 10px;
+  }
+  article.item p{
+    font-size:0.98rem;
+    line-height:1.65;
+    color:var(--ink);
+    margin:0 0 10px;
+  }
+  .source-line{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+  }
+  .source-line b{ color:var(--ink); }
+
+  blockquote.pull{
+    border-left:4px solid var(--section-color, var(--chili));
+    background:var(--paper-dim);
+    padding:16px 18px;
+    margin:14px 0 16px;
+  }
+  blockquote.pull p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    margin:0 0 8px;
+    color:var(--ink);
+  }
+  blockquote.pull cite{
+    font-family:'JetBrains Mono', monospace;
+    font-style:normal;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+  }
+
+  table.agenda{
+    width:100%;
+    border-collapse:collapse;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem;
+    margin-top:6px;
+  }
+  table.agenda th{
+    text-align:left;
+    text-transform:uppercase;
+    font-size:0.68rem;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    border-bottom:1.5px solid var(--ink);
+    padding:8px 6px;
+  }
+  table.agenda td{
+    padding:10px 6px;
+    border-bottom:1px solid var(--rule);
+  }
+
+  footer.colophon{
+    max-width:900px;
+    margin:60px auto 0;
+    padding:26px 24px 60px;
+    border-top:4px solid var(--ink);
+  }
+  footer.colophon p{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:560px){
+    nav.toc a{padding:10px 12px; font-size:0.66rem;}
+    .stat-banner{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-row">
+    <a href="index.html" class="back-link">← Arquivo</a>
+    <span class="wordmark-sm">Mesa em <em>Foco</em></span>
+    <span style="width:70px"></span>
+  </div>
+  <div class="find-bar">
+    <input type="text" id="pageSearch" placeholder="Buscar nesta edição: pessoa, restaurante, número, fonte…">
+    <button id="findBtn">Buscar</button>
+  </div>
+  <p class="find-status" id="findStatus"></p>
+</header>
+
+<div class="hero">
+  <p class="kicker">Edição 01 · 21 de agosto de 2026 · Recap da semana</p>
+  <h1>Restaurant Week bomba pelo Brasil enquanto o México é eleito o melhor destino gastronômico do mundo</h1>
+  <p class="dek">Fusões no food service, fornos combinados inteligentes e tudo o que aconteceu na gastronomia entre 15 e 21 de agosto.</p>
+</div>
+
+<div class="stat-banner">
+  <div class="stat"><div class="num">R$ 455 bi</div><div class="lbl">Food service Brasil, 2024</div></div>
+  <div class="stat"><div class="num">150+</div><div class="lbl">Restaurantes na Brasília RW</div></div>
+  <div class="stat"><div class="num">1º</div><div class="lbl">México no ranking mundial 2026</div></div>
+</div>
+
+<nav class="toc">
+  <a href="#brasil">Brasil</a>
+  <a href="#mundo">Mundo</a>
+  <a href="#financeiro">Financeiro</a>
+  <a href="#tecnologia">Tecnologia</a>
+  <a href="#agenda">Agenda</a>
+</nav>
+
+<!-- BRASIL -->
+<section class="block" id="brasil" style="--section-color:var(--chili)">
+  <div class="block-head"><span class="em">01</span><h2>Brasil</h2></div>
+
+  <article class="item">
+    <h3>Restaurant Week segue movimentando o país</h3>
+    <p>A 34ª edição da Brasília Restaurant Week segue até 30 de agosto, reunindo mais de 150 restaurantes do Distrito Federal com o tema "Brasil de Norte a Sul". Menus vão de R$ 59,90 (categoria Tradicional) a R$ 149 (categoria Diamond).</p>
+    <blockquote class="pull">
+      <p>"Celebrar a gastronomia brasileira é celebrar a nossa própria identidade. Em cada região existem ingredientes, técnicas e receitas que contam a história do país."</p>
+      <cite>Fernando Reis — Idealizador da Brasil Restaurant Week, em entrevista ao Deu Bom Brasília</cite>
+    </blockquote>
+    <p class="source-line">Fontes: <b>Deu Bom Brasília</b> · Cadê Brasília · Blog Liana Sabo (Correio Braziliense)</p>
+  </article>
+
+  <article class="item">
+    <h3>São Paulo entra no radar do fim de semana</h3>
+    <p>O SP Gastronomia volta ao Parque Villa-Lobos em dois fins de semana (21–23/08 e 28–30/08), reunindo restaurantes consagrados da cidade, aulas com chefs renomados e programação musical ao ar livre.</p>
+    <p class="source-line">Fonte: <b>Programa Para Dois</b></p>
+  </article>
+
+  <article class="item">
+    <h3>Abertura da semana: Miyabi, no Baixo Pinheiros</h3>
+    <p>O novo restaurante autoral do chef Fábio Ota chamou atenção por ser 100% livre de glúten — proposta inédita entre os omakases da cidade. O menu degustação de 15 etapas custa R$ 700, servido em balcão em "L" para 16 lugares.</p>
+    <p class="source-line">Fonte: <b>Programa Para Dois</b></p>
+  </article>
+</section>
+
+<!-- MUNDO -->
+<section class="block" id="mundo" style="--section-color:var(--saffron)">
+  <div class="block-head"><span class="em">02</span><h2>Mundo</h2></div>
+
+  <article class="item">
+    <h3>México é eleito melhor destino gastronômico do mundo em 2026</h3>
+    <p>Ranking da Travel and Tour World colocou o México à frente de Itália, Espanha, Japão e outros 46 países, destacando a força da tradição culinária mexicana como diferencial.</p>
+    <p class="source-line">Fonte: <b>Aderezo</b> (El Sol de México)</p>
+  </article>
+
+  <article class="item">
+    <h3>Ranking global de cidades para comer em 2026</h3>
+    <p>Levantamento baseado em votação de moradores locais colocou Ho Chi Minh, Lima e Atenas entre os destaques, todas reconhecidas por reinterpretar pratos tradicionais com técnica contemporânea. Londres liderou em qualidade percebida (96% de aprovação local), mas teve má avaliação em custo-benefício (apenas 42% consideram barato comer fora).</p>
+    <p class="source-line">Fonte: <b>QZ</b>, via pesquisa com moradores locais</p>
+  </article>
+
+  <article class="item">
+    <h3>Tendência global: fogo, brasa e fumaça</h3>
+    <p>Segundo inspetores do Guia MICHELIN, o uso de carvão, lenha, pedras quentes e binchotan (carvão branco japonês) virou padrão em restaurantes de diferentes países — da Suécia a Buenos Aires — como forma de intensificar sabor e criar espetáculo à mesa.</p>
+    <p class="source-line">Fonte: <b>Guia MICHELIN</b></p>
+  </article>
+</section>
+
+<!-- FINANCEIRO -->
+<section class="block" id="financeiro" style="--section-color:var(--plum)">
+  <div class="block-head"><span class="em">03</span><h2>Financeiro &amp; Mercado</h2></div>
+
+  <article class="item">
+    <h3>Food service brasileiro em consolidação</h3>
+    <p>O setor de food service no Brasil movimentou R$ 455 bilhões em 2024 e segue em trajetória de crescimento puxada por delivery, digitalização e urbanização.</p>
+    <p class="source-line">Fonte: <b>Mundo do Marketing</b></p>
+  </article>
+
+  <article class="item">
+    <h3>M&amp;A aquecido no setor</h3>
+    <p>Entre as movimentações recentes está a aquisição da Fazenda Churrascada pelo Heat Group e a negociação do Grupo Irajá pela Alife Nino.</p>
+    <blockquote class="pull">
+      <p>"O Brasil tem um dos maiores mercados de foodservice do mundo, e essa fragmentação oferece grandes oportunidades de crescimento."</p>
+      <cite>Adam Patterson — Economista e sócio da Redirection International, em estudo divulgado pela ANR Brasil</cite>
+    </blockquote>
+    <p class="source-line">Fonte: <b>ANR Brasil</b> (Associação Nacional de Restaurantes)</p>
+  </article>
+
+  <article class="item">
+    <h3>Franchising bate recorde</h3>
+    <p>O setor de franquias de alimentação já ultrapassou R$ 300 bilhões em movimentação anual, alta de 10,5%, segundo a Pesquisa de Desempenho do Franchising 2025.</p>
+    <p class="source-line">Fonte: <b>ABF</b> (Associação Brasileira de Franchising) / ABRASCE</p>
+  </article>
+
+  <article class="item">
+    <h3>Indústria de alimentos investe pesado</h3>
+    <p>O setor projeta expansão real de vendas entre 2% e 2,5% em 2026, após investir R$ 41,3 bilhões em 2025 — 6,8% a mais que no ano anterior, com R$ 26,7 bilhões direcionados à modernização e inovação.</p>
+    <blockquote class="pull">
+      <p>Dados apresentados por João Dornellas, presidente executivo da ABIA, apontam estabilidade nas safras e redução gradual de juros como fatores de previsibilidade para o setor em 2026.</p>
+      <cite>João Dornellas — Presidente executivo da ABIA</cite>
+    </blockquote>
+    <p class="source-line">Fonte: <b>E-Commerce Brasil</b></p>
+  </article>
+</section>
+
+<!-- TECNOLOGIA -->
+<section class="block" id="tecnologia" style="--section-color:var(--basil)">
+  <div class="block-head"><span class="em">04</span><h2>Tecnologia &amp; Equipamentos</h2></div>
+
+  <article class="item">
+    <h3>Fornos combinados inteligentes</h3>
+    <p>Equipamentos com leitura automática do ponto do alimento (sensores de temperatura e umidade) e controle simultâneo de calor seco e vapor seguem como o maior salto tecnológico de cozinha profissional. Investimento parte de R$ 40 mil e pode passar de R$ 100 mil, dependendo da capacidade.</p>
+    <p class="source-line">Fontes: <b>BomGourmet</b> · Guia MICHELIN</p>
+  </article>
+
+  <article class="item">
+    <h3>Digitalização de ponta a ponta</h3>
+    <p>Tendência 2026 aponta para sistemas de pedidos integrados conectando sala, cozinha e delivery em tempo real, além de análise de dados de consumo para montagem de cardápio.</p>
+    <p class="source-line">Fonte: <b>Wictory</b>, consultoria especializada em equipamentos de cozinha profissional</p>
+  </article>
+
+  <article class="item">
+    <h3>Feiras do setor reforçam a pauta tech</h3>
+    <p>Na SRE Trade Show 2026 (Super Rio Expofood), realizada em março no Riocentro, a fabricante brasileira Prática discutiu otimização de processos em padarias, confeitarias e cozinhas industriais como caminho para padronização e produtividade.</p>
+    <p class="source-line">Fonte: <b>Revista Kdea 360</b></p>
+  </article>
+</section>
+
+<!-- AGENDA -->
+<section class="block" id="agenda" style="--section-color:var(--navy)">
+  <div class="block-head"><span class="em">05</span><h2>Agenda</h2></div>
+  <table class="agenda">
+    <thead><tr><th>Evento</th><th>Data</th><th>Local</th></tr></thead>
+    <tbody>
+      <tr><td>SP Gastronomia (1ª etapa)</td><td>21–23/08</td><td>Parque Villa-Lobos, SP</td></tr>
+      <tr><td>SP Gastronomia (2ª etapa)</td><td>28–30/08</td><td>Parque Villa-Lobos, SP</td></tr>
+      <tr><td>Brasília Restaurant Week</td><td>até 30/08</td><td>Distrito Federal</td></tr>
+      <tr><td>Cerimônia Guia MICHELIN Rio &amp; SP 2026</td><td>a confirmar</td><td>Rio de Janeiro</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer class="colophon">
+  <p>Mesa em Foco — edição semanal · próxima edição: segunda-feira, recap do fim de semana</p>
+</footer>
+
+<script>
+  const input = document.getElementById('pageSearch');
+  const btn = document.getElementById('findBtn');
+  const status = document.getElementById('findStatus');
+  const container = document.querySelector('body');
+  let originalHTML = null;
+  let matches = [];
+  let currentIndex = -1;
+
+  function clearHighlights(){
+    document.querySelectorAll('mark.js-hit').forEach(m => {
+      const parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+
+  function runSearch(){
+    clearHighlights();
+    matches = [];
+    currentIndex = -1;
+    const term = input.value.trim();
+    if(term.length < 2){ status.textContent = ''; return; }
+
+    const walker = document.createTreeWalker(
+      document.querySelector('main, .hero, section.block, footer.colophon') ? document.body : document.body,
+      NodeFilter.SHOW_TEXT,
+      { acceptNode: node => {
+          if(!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          if(node.parentNode.closest('header, script, style, input, button')) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }}
+    );
+
+    const regex = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
+    const nodes = [];
+    let n;
+    while(n = walker.nextNode()) nodes.push(n);
+
+    nodes.forEach(node => {
+      if(!regex.test(node.nodeValue)) return;
+      regex.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let lastIndex = 0;
+      let m;
+      while((m = regex.exec(node.nodeValue)) !== null){
+        frag.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex, m.index)));
+        const mark = document.createElement('mark');
+        mark.className = 'js-hit';
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        matches.push(mark);
+        lastIndex = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex)));
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    if(matches.length){
+      currentIndex = 0;
+      matches[0].scrollIntoView({behavior:'smooth', block:'center'});
+      status.textContent = matches.length + ' ocorrência(s) encontrada(s) — Enter para navegar';
+    } else {
+      status.textContent = 'Nenhuma ocorrência encontrada nesta edição';
+    }
+  }
+
+  btn.addEventListener('click', runSearch);
+  input.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+      if(matches.length && currentIndex >= 0){
+        currentIndex = (currentIndex + 1) % matches.length;
+        matches[currentIndex].scrollIntoView({behavior:'smooth', block:'center'});
+        status.textContent = 'Ocorrência ' + (currentIndex+1) + ' de ' + matches.length;
+      } else {
+        runSearch();
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

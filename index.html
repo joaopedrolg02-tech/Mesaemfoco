@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mesa em Foco — Arquivo de Edições</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFDF7;
+    --paper-dim:#F3EEE2;
+    --ink:#181410;
+    --ink-soft:#5c554c;
+    --chili:#E7412C;
+    --saffron:#D98C00;
+    --plum:#5B1F44;
+    --basil:#2B6A4C;
+    --buzz:#D6336C;
+    --navy:#212E56;
+    --rule: rgba(24,20,16,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  /* MASTHEAD */
+  header.masthead{
+    padding:28px 24px 20px;
+    border-bottom:4px solid var(--ink);
+    background:var(--paper);
+  }
+  .masthead-row{
+    max-width:1180px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(2.6rem, 7vw, 4.6rem);
+    letter-spacing:-0.02em;
+    line-height:0.9;
+    margin:0;
+  }
+  .wordmark em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--chili);
+  }
+  .masthead-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+  .kicker{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--chili);
+    margin:0 0 6px;
+  }
+
+  /* SEARCH BAR */
+  .search-bar{
+    max-width:1180px;
+    margin:22px auto 0;
+    padding:0 24px;
+  }
+  .search-bar input{
+    width:100%;
+    font-family:'Fraunces', serif;
+    font-size:1.3rem;
+    font-style:italic;
+    padding:14px 18px;
+    border:2px solid var(--ink);
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:2px;
+  }
+  .search-bar input::placeholder{color:var(--ink-soft); opacity:0.7;}
+  .search-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    color:var(--ink-soft);
+    margin-top:6px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+
+  /* TAG FILTERS */
+  .filters{
+    max-width:1180px;
+    margin:16px auto 0;
+    padding:0 24px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .filter-btn{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    padding:7px 13px;
+    border:1.5px solid var(--ink);
+    background:var(--paper);
+    cursor:pointer;
+    border-radius:20px;
+    color:var(--ink);
+  }
+  .filter-btn.active{ background:var(--ink); color:var(--paper); }
+
+  /* GRID */
+  main{
+    max-width:1180px;
+    margin:34px auto 80px;
+    padding:0 24px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:26px;
+  }
+  .card{
+    border:1.5px solid var(--ink);
+    background:var(--paper);
+    display:flex;
+    flex-direction:column;
+    text-decoration:none;
+    transition:transform .15s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .card:hover{ transform:translateY(-4px); }
+  .card-top{
+    height:6px;
+    background:var(--chili);
+  }
+  .card-body{ padding:22px 22px 20px; flex:1; display:flex; flex-direction:column;}
+  .card-issue{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .card-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.6rem;
+    line-height:1.08;
+    margin:0 0 12px;
+  }
+  .card-excerpt{
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0 0 18px;
+    flex:1;
+  }
+  .card-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:14px;
+  }
+  .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.65rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    padding:3px 9px;
+    border-radius:20px;
+    color:#fff;
+  }
+  .card-cta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    border-top:1px solid var(--rule);
+    padding-top:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  .empty-state{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--ink-soft);
+    padding:60px 0;
+    text-align:center;
+    display:none;
+  }
+
+  footer{
+    border-top:4px solid var(--ink);
+    padding:26px 24px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+
+  @media (max-width:560px){
+    .masthead-row{flex-direction:column; align-items:flex-start;}
+    .masthead-meta{text-align:left;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-row">
+    <div>
+      <p class="kicker">Arquivo completo</p>
+      <h1 class="wordmark">Mesa em <em>Foco</em></h1>
+    </div>
+    <div class="masthead-meta">
+      Gastronomia · Brasil &amp; Mundo<br>
+      Publicação quinzenal-semanal<br>
+      Segundas &amp; Sextas
+    </div>
+  </div>
+</header>
+
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Buscar por título, tema, restaurante, pessoa ou fonte…">
+  <p class="search-meta" id="resultCount">2 edições no arquivo</p>
+</div>
+
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-tag="all">Todas</button>
+  <button class="filter-btn" data-tag="brasil">Brasil</button>
+  <button class="filter-btn" data-tag="mundo">Mundo</button>
+  <button class="filter-btn" data-tag="financeiro">Financeiro</button>
+  <button class="filter-btn" data-tag="tecnologia">Tecnologia</button>
+  <button class="filter-btn" data-tag="buzz">Redes &amp; Buzz</button>
+</div>
+
+<main>
+  <div class="grid" id="cardGrid">
+
+    <a class="card" href="mesa-em-foco-2026-08-24.html"
+       data-title="SP Gastronomia, Restaurant Week, Sysco compra Restaurant Depot, IA na cozinha"
+       data-tags="brasil financeiro tecnologia">
+      <div class="card-top" style="background:var(--chili)"></div>
+      <div class="card-body">
+        <p class="card-issue">Edição 02 · 24 ago 2026 · Recap do fim de semana</p>
+        <h2 class="card-title">SP Gastronomia lota o Villa-Lobos, Sysco fecha compra bilionária</h2>
+        <p class="card-excerpt">SP Gastronomia e Brasília Restaurant Week agitam o fim de semana, Sysco compra a Restaurant Depot por US$ 29,1 bi, e a Abrasel prepara um espaço de IA para gestão de cozinha no Salão Abrasel.</p>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--chili)">Brasil</span>
+          <span class="tag" style="background:var(--plum)">Financeiro</span>
+          <span class="tag" style="background:var(--basil)">Tecnologia</span>
+        </div>
+        <div class="card-cta"><span>Ler edição</span><span>→</span></div>
+      </div>
+    </a>
+
+    <a class="card" href="mesa-em-foco-2026-08-21.html"
+       data-title="Restaurant Week, México melhor destino do mundo, fusão Heat Group, fornos combinados"
+       data-tags="brasil mundo financeiro tecnologia">
+      <div class="card-top" style="background:var(--chili)"></div>
+      <div class="card-body">
+        <p class="card-issue">Edição 01 · 21 ago 2026 · Recap da semana</p>
+        <h2 class="card-title">Restaurant Week bomba, México lidera ranking mundial</h2>
+        <p class="card-excerpt">Fernando Reis fala sobre a força da Restaurant Week no DF, México é eleito melhor destino gastronômico do mundo, Heat Group compra Fazenda Churrascada e fornos combinados inteligentes dominam a pauta tech.</p>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--chili)">Brasil</span>
+          <span class="tag" style="background:var(--saffron)">Mundo</span>
+          <span class="tag" style="background:var(--plum)">Financeiro</span>
+          <span class="tag" style="background:var(--basil)">Tecnologia</span>
+        </div>
+        <div class="card-cta"><span>Ler edição</span><span>→</span></div>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="empty-state" id="emptyState">Nenhuma edição encontrada para essa busca. Tente outro termo.</p>
+</main>
+
+<footer>Mesa em Foco — arquivo de edições semanais · texto integral pesquisável</footer>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const cards = Array.from(document.querySelectorAll('.card'));
+  const resultCount = document.getElementById('resultCount');
+  const emptyState = document.getElementById('emptyState');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  let activeTag = 'all';
+
+  function applyFilters(){
+    const q = searchInput.value.trim().toLowerCase();
+    let visible = 0;
+    cards.forEach(card => {
+      const text = (card.dataset.title + ' ' + card.textContent).toLowerCase();
+      const tags = card.dataset.tags.split(' ');
+      const matchesText = q === '' || text.includes(q);
+      const matchesTag = activeTag === 'all' || tags.includes(activeTag);
+      const show = matchesText && matchesTag;
+      card.style.display = show ? '' : 'none';
+      if(show) visible++;
+    });
+    resultCount.textContent = visible + (visible === 1 ? ' edição encontrada' : ' edições encontradas');
+    emptyState.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  searchInput.addEventListener('input', applyFilters);
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTag = btn.dataset.tag;
+      applyFilters();
+    });
+  });
+</script>
+
+</body>
+</html>
