@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cogumelos viram protagonistas do prato — Mesa em Foco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFDF7;
+    --paper-dim:#F3EEE2;
+    --ink:#181410;
+    --ink-soft:#5c554c;
+    --chili:#E7412C;
+    --saffron:#D98C00;
+    --plum:#5B1F44;
+    --basil:#2B6A4C;
+    --buzz:#D6336C;
+    --navy:#212E56;
+    --rule: rgba(24,20,16,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  mark{ background:#d9ecdf; color:var(--ink); padding:0 2px; }
+
+  header.masthead{
+    padding:28px 24px 20px;
+    border-bottom:4px solid var(--ink);
+    background:var(--paper);
+  }
+  .masthead-row{
+    max-width:820px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(1.8rem, 5vw, 2.6rem);
+    letter-spacing:-0.02em;
+    line-height:0.9;
+    margin:0;
+  }
+  .wordmark em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--chili);
+  }
+  .masthead-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+  .masthead-meta a{ text-decoration:none; border-bottom:1px solid var(--rule); }
+
+  .search-wrap{
+    max-width:820px;
+    margin:20px auto 0;
+    padding:0 24px;
+  }
+  .search-wrap input{
+    width:100%;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    padding:10px 14px;
+    border:1.5px solid var(--ink);
+    background:var(--paper-dim);
+    color:var(--ink);
+    border-radius:2px;
+  }
+  .search-wrap input::placeholder{ color:var(--ink-soft); }
+
+  main{
+    max-width:820px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  .kicker-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:34px 0 10px;
+  }
+  .section-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:#fff;
+    background:var(--basil);
+    padding:4px 11px;
+    border-radius:20px;
+  }
+  .issue-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+  }
+
+  h1.headline{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(2rem, 5.5vw, 3.2rem);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin:0 0 14px;
+  }
+  p.dek{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.25rem;
+    line-height:1.45;
+    color:var(--ink-soft);
+    margin:0 0 28px;
+    max-width:640px;
+  }
+
+  .byline{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:12px 0;
+    margin-bottom:32px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .byline strong{ color:var(--ink); }
+
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--ink);
+    border:1.5px solid var(--ink);
+    margin:0 0 36px;
+  }
+  .stat{
+    background:var(--paper);
+    padding:18px 16px;
+    text-align:center;
+  }
+  .stat-num{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:1.7rem;
+    color:var(--basil);
+    line-height:1;
+    margin-bottom:6px;
+  }
+  .stat-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+  }
+
+  .toc{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    padding:16px 0;
+    margin-bottom:30px;
+    border-bottom:1.5px solid var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .toc a{ text-decoration:none; color:var(--basil); border-bottom:1px dotted var(--basil); }
+
+  article{
+    font-size:1.05rem;
+    line-height:1.7;
+  }
+  article h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.5rem;
+    margin:40px 0 14px;
+    padding-top:6px;
+    border-top:3px solid var(--basil);
+    scroll-margin-top:20px;
+  }
+  article p{ margin:0 0 18px; }
+  article ul{ margin:0 0 20px; padding-left:22px; }
+  article li{ margin-bottom:10px; }
+
+  .timeline{
+    list-style:none;
+    margin:0 0 20px;
+    padding:0;
+    border-left:2px solid var(--basil);
+  }
+  .timeline li{
+    position:relative;
+    padding:0 0 22px 24px;
+  }
+  .timeline li::before{
+    content:'';
+    position:absolute;
+    left:-7px;
+    top:4px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:var(--basil);
+  }
+  .timeline .t-date{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    font-weight:700;
+    color:var(--basil);
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:4px;
+  }
+
+  .example-card{
+    border:1.5px solid var(--ink);
+    padding:20px;
+    margin:0 0 24px;
+    background:var(--paper-dim);
+  }
+  .example-card h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin:0 0 4px;
+  }
+  .example-card .loc{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:12px;
+    display:block;
+  }
+  .example-card a.social{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    color:var(--basil);
+    text-decoration:none;
+  }
+
+  blockquote.pullquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.35rem;
+    line-height:1.5;
+    color:var(--ink);
+    border-left:4px solid var(--basil);
+    padding:4px 0 4px 22px;
+    margin:30px 0;
+  }
+  blockquote.pullquote cite{
+    display:block;
+    font-family:'JetBrains Mono', monospace;
+    font-style:normal;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    margin-top:10px;
+  }
+
+  .prognostico-box{
+    background:var(--ink);
+    color:var(--paper);
+    padding:26px 24px;
+    margin:30px 0;
+  }
+  .prognostico-box h2{
+    color:var(--paper);
+    border-top:3px solid var(--basil);
+    margin-top:0;
+  }
+  .prognostico-box p{ color:#d8d3c8; }
+  .prognostico-box strong{ color:#fff; }
+
+  .sources{
+    margin-top:44px;
+    padding-top:20px;
+    border-top:1.5px solid var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    line-height:1.8;
+  }
+
+  footer{
+    border-top:4px solid var(--ink);
+    padding:26px 24px 40px;
+    margin-top:50px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+  footer a{ text-decoration:none; color:var(--basil); }
+
+  @media (max-width:560px){
+    .masthead-row{flex-direction:column; align-items:flex-start;}
+    .masthead-meta{text-align:left;}
+    .stat-strip{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-row">
+    <h1 class="wordmark">Mesa em <em>Foco</em></h1>
+    <div class="masthead-meta">
+      <a href="index.html">← Voltar ao arquivo</a>
+    </div>
+  </div>
+</header>
+
+<div class="search-wrap">
+  <input type="text" id="pageSearch" placeholder="Buscar nesta edição (Ctrl+F funciona também)…">
+</div>
+
+<main>
+
+  <div class="kicker-row">
+    <span class="section-tag">Tendência em Alta</span>
+    <span class="issue-meta">30 ago 2026</span>
+  </div>
+
+  <h1 class="headline">Cogumelos viram protagonistas do prato</h1>
+  <p class="dek">O que já foi só champignon em conserva no estrogonofe agora carrega o protagonismo antes reservado à proteína animal — e o Guia MICHELIN confirmou: não é modismo, é tendência oficial de 2026.</p>
+
+  <div class="byline">
+    <span>Por <strong>@ochefjoao</strong></span>
+    <span>Leitura de 6 min</span>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat">
+      <div class="stat-num">+25%</div>
+      <div class="stat-label">Crescimento do setor no Brasil em 2025</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">R$ 1,5 bi</div>
+      <div class="stat-label">Faturamento do setor brasileiro em 2025</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">+32%</div>
+      <div class="stat-label">Crescimento do shiitake — o mais rápido</div>
+    </div>
+  </div>
+
+  <nav class="toc">
+    <a href="#o-que-e">O que é</a>
+    <a href="#origem">Origem</a>
+    <a href="#evolucao">Evolução</a>
+    <a href="#brasil">Brasil</a>
+    <a href="#mundo">Mundo</a>
+    <a href="#por-que-agora">Por quê agora</a>
+    <a href="#prognostico">Prognóstico</a>
+  </nav>
+
+  <article>
+
+    <h2 id="o-que-e">O que é?</h2>
+    <p>Por décadas, o cogumelo no Brasil foi sinônimo de uma coisa só: champignon em conserva, picado no estrogonofe. Essa fase acabou. A tendência que se consolida agora — e que os próprios inspetores do Guia MICHELIN apontam como uma das que moldam a gastronomia em 2026 — é o cogumelo como <strong>ingrediente central do prato</strong>, não mais acompanhamento. Fresco, silvestre ou cultivado, em texturas que vão do crocante ao cremoso, ele passa a carregar sozinho o protagonismo que antes era reservado à proteína animal.</p>
+
+    <h2 id="origem">Origem</h2>
+    <p>O movimento não nasceu do dia para a noite. Já em 2023, consultorias americanas como a Af&co e a Carbonate apontavam os cogumelos como um dos ingredientes de maior crescimento em cardápios ao redor do mundo, puxado por dois movimentos simultâneos: a busca por alternativas ao consumo de carne e a valorização de ingredientes com "umami" — aquele quinto sabor difícil de replicar sinteticamente. O que muda agora, em 2026, é a escala: o que era nicho vira presença consistente em cardápios de alta gastronomia e também em redes maiores.</p>
+
+    <h2 id="evolucao">Evolução</h2>
+    <ul class="timeline">
+      <li><span class="t-date">2018–2022</span>Cogumelos frescos começam a substituir os enlatados nas gôndolas de supermercado; consumo per capita no Brasil ainda baixo (cerca de 160g/ano por pessoa, contra até 8kg/ano em países asiáticos).</li>
+      <li><span class="t-date">2023</span>Primeira onda de reconhecimento internacional do ingrediente como tendência gastronômica.</li>
+      <li><span class="t-date">2025</span>Mercado brasileiro de cogumelos cresce 25% em um único ano — produção salta de 16 mil para 20 mil toneladas, faturamento do setor vai de R$ 1,2 bilhão para R$ 1,5 bilhão.</li>
+      <li><span class="t-date">2026</span>Guia MICHELIN inclui oficialmente "cogumelos como protagonistas" entre as grandes tendências gastronômicas do ano, ao lado de fermentação e cozinha ao fogo.</li>
+    </ul>
+
+    <h2 id="brasil">Adoção — Brasil</h2>
+
+    <div class="example-card">
+      <h3>Felipe Miyake</h3>
+      <span class="loc">Curitiba (PR)</span>
+      <p>Serve macaroni gratin com cogumelos morille no menu de outono — tratados como iguaria, não coadjuvante. O restaurante saltou 22 posições no ranking dos 100 Melhores Restaurantes do Brasil (Exame, 2026).</p>
+    </div>
+
+    <div class="example-card">
+      <h3>Enzo Ceccin — Sea Restaurant</h3>
+      <span class="loc">Praia do Rosa (SC)</span>
+      <p>Criou um gelato de cogumelo portobello — sobremesa, não entrada — depois de provar um sorvete de trufa (também um fungo) durante uma viagem pela Europa.</p>
+    </div>
+
+    <div class="example-card">
+      <h3>Enrique Paredes</h3>
+      <span class="loc">São Paulo (SP)</span>
+      <p>Em seu restaurante peruano, já tem pratos onde o cogumelo é a estrela do menu — caso da Causa de Cogumelos, amassado de batata amarela com cogumelos paris al ajillo peruano.</p>
+    </div>
+
+    <p>Dentro dos próprios tipos cultivados no Brasil, os cogumelos "especiais" — shiitake, shimeji, eryngii, portobello — crescem em ritmo bem mais acelerado que o champignon tradicional: shiitake cresceu 32% em 2025, shimeji 28%, contra um crescimento geral do setor de 25%.</p>
+
+    <h2 id="mundo">Adoção — Mundo</h2>
+    <p>Segundo os inspetores do Guia MICHELIN, o movimento se repete com sotaques regionais diferentes:</p>
+    <ul>
+      <li>Na <strong>China</strong>, cresce o interesse por "ingredientes silvestres da montanha" como porcini, matsutake e cogumelos de térmitas, sobretudo em cozinhas influenciadas pelas regiões de Yunnan, Guizhou e Sichuan.</li>
+      <li>Em <strong>Portugal</strong>, chefs como Ricardo Costa, do The Yeatman Gastronomic Restaurant, e José Júlio Vintém, do Tomba Lobos, têm nos cogumelos silvestres — Boletus e Chanterelles, entre outros — um elemento sazonal central de outono e inverno.</li>
+      <li>Em <strong>Lisboa</strong>, o restaurante Santa Clara dos Cogumelos construiu identidade completa em torno do ingrediente: massas, risotos e até sorvete de cogumelo compõem o menu.</li>
+    </ul>
+
+    <h2 id="por-que-agora">Por quê agora</h2>
+    <p>Três fatores convergem:</p>
+    <ul>
+      <li><strong>Busca por alternativas proteicas</strong>: o movimento de redução de consumo de carne — por motivos de saúde, sustentabilidade ou custo — encontra no cogumelo um ingrediente com textura "carnuda" e sabor umami que substitui sem imitar.</li>
+      <li><strong>Tecnologia de cultivo</strong>: startups brasileiras têm investido em sistemas de cultivo indoor, o que melhora a regularidade de fornecimento — historicamente um dos maiores desafios apontados por chefs que trabalham com variedades silvestres.</li>
+      <li><strong>Sazonalidade como valor</strong>: a tendência de "comida com propósito" encontra no cogumelo sazonal um símbolo perfeito — um ingrediente que muda com as estações e reforça a narrativa de origem que o consumidor atual valoriza.</li>
+    </ul>
+
+    <blockquote class="pullquote">
+      "Os fungos comestíveis passaram a aparecer cada vez mais frescos e menos em conserva, em receitas bem diferentes do que estávamos acostumados."
+      <cite>Renato Quintino, chef e professor de gastronomia — ao Estado de Minas (Degusta)</cite>
+    </blockquote>
+
+    <div class="prognostico-box" id="prognostico">
+      <h2>Prognóstico</h2>
+      <p>Os números de mercado sustentam a tese de que não é modismo passageiro: um crescimento de 25% em um único ano, com os cogumelos "especiais" crescendo ainda mais rápido que o volume geral, indica investimento real de produtores — não apenas curiosidade pontual de chefs. Some-se a isso o aval de uma fonte historicamente conservadora como o Guia MICHELIN, que não costuma "carimbar" tendências fracas.</p>
+      <p>O que pode esfriar o ritmo: a dependência de fornecimento regular de variedades silvestres, ainda um gargalo citado por chefs internacionais. Mas para os cogumelos cultivados — shiitake, shimeji, portobello, os que mais crescem no Brasil — esse obstáculo já está sendo resolvido via tecnologia de cultivo indoor.</p>
+      <p><strong>Nosso palpite:</strong> cogumelo como protagonista veio para ficar pelo menos até 2028, mas o próximo capítulo da tendência não deve ser "mais cogumelo" — e sim "cogumelo com identidade regional", puxando espécies nativas brasileiras ainda pouco exploradas comercialmente.</p>
+    </div>
+
+    <div class="sources">
+      Fontes: Guia MICHELIN Brasil e Portugal · Revista Exame (100 Melhores Restaurantes do Brasil 2026) · Estado de Minas (Degusta) · Fungo News/União Fungo Shop · Wanderlog
+    </div>
+
+  </article>
+
+</main>
+
+<footer>
+  Mesa em Foco — gastronomia Brasil &amp; Mundo · <a href="https://instagram.com/mesa.emfoco">@mesa.emfoco</a>
+</footer>
+
+<script>
+  const pageSearch = document.getElementById('pageSearch');
+  const article = document.querySelector('article');
+  const originalHTML = article.innerHTML;
+
+  pageSearch.addEventListener('input', () => {
+    const q = pageSearch.value.trim();
+    if(!q){ article.innerHTML = originalHTML; return; }
+    const regex = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    article.innerHTML = originalHTML.replace(regex, '<mark>$1</mark>');
+    const first = article.querySelector('mark');
+    if(first) first.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+</script>
+
+</body>
+</html>
