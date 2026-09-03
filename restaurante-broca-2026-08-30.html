@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Broca: o bar com jeitinho de restaurante — Mesa em Foco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFDF7;
+    --paper-dim:#F3EEE2;
+    --ink:#181410;
+    --ink-soft:#5c554c;
+    --chili:#E7412C;
+    --saffron:#D98C00;
+    --plum:#5B1F44;
+    --basil:#2B6A4C;
+    --buzz:#D6336C;
+    --navy:#212E56;
+    --rule: rgba(24,20,16,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  mark{ background:#fbdcd4; color:var(--ink); padding:0 2px; }
+
+  header.masthead{
+    padding:28px 24px 20px;
+    border-bottom:4px solid var(--ink);
+    background:var(--paper);
+  }
+  .masthead-row{
+    max-width:820px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(1.8rem, 5vw, 2.6rem);
+    letter-spacing:-0.02em;
+    line-height:0.9;
+    margin:0;
+  }
+  .wordmark em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--chili);
+  }
+  .masthead-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+  .masthead-meta a{ text-decoration:none; border-bottom:1px solid var(--rule); }
+
+  .search-wrap{
+    max-width:820px;
+    margin:20px auto 0;
+    padding:0 24px;
+  }
+  .search-wrap input{
+    width:100%;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    padding:10px 14px;
+    border:1.5px solid var(--ink);
+    background:var(--paper-dim);
+    color:var(--ink);
+    border-radius:2px;
+  }
+  .search-wrap input::placeholder{ color:var(--ink-soft); }
+
+  .hero-photo{
+    max-width:820px;
+    margin:24px auto 0;
+    padding:0 24px;
+  }
+  .hero-photo .frame{
+    aspect-ratio:16/10;
+    background:var(--paper-dim);
+    border:2px solid var(--ink);
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .hero-photo .frame::before,
+  .hero-photo .frame::after{
+    content:'';
+    position:absolute;
+    width:26px; height:26px;
+    border-color:var(--chili);
+    border-style:solid;
+  }
+  .hero-photo .frame::before{ top:-2px; left:-2px; border-width:4px 0 0 4px; }
+  .hero-photo .frame::after{ bottom:-2px; right:-2px; border-width:0 4px 4px 0; }
+  .hero-photo .frame span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+  }
+
+  main{
+    max-width:820px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  .kicker-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:34px 0 10px;
+  }
+  .section-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:#fff;
+    background:var(--chili);
+    padding:4px 11px;
+    border-radius:20px;
+  }
+  .issue-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+  }
+
+  h1.headline{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(2rem, 5.5vw, 3.2rem);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin:0 0 14px;
+  }
+  p.dek{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.25rem;
+    line-height:1.45;
+    color:var(--ink-soft);
+    margin:0 0 28px;
+    max-width:640px;
+  }
+
+  .byline{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:12px 0;
+    margin-bottom:32px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .byline strong{ color:var(--ink); }
+
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--ink);
+    border:1.5px solid var(--ink);
+    margin:0 0 36px;
+  }
+  .stat{
+    background:var(--paper);
+    padding:18px 16px;
+    text-align:center;
+  }
+  .stat-num{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:1.5rem;
+    color:var(--chili);
+    line-height:1;
+    margin-bottom:6px;
+  }
+  .stat-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+  }
+
+  .toc{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    padding:16px 0;
+    margin-bottom:30px;
+    border-bottom:1.5px solid var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .toc a{ text-decoration:none; color:var(--chili); border-bottom:1px dotted var(--chili); }
+
+  article{
+    font-size:1.05rem;
+    line-height:1.7;
+  }
+  article h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.5rem;
+    margin:40px 0 14px;
+    padding-top:6px;
+    border-top:3px solid var(--chili);
+    scroll-margin-top:20px;
+  }
+  article p{ margin:0 0 18px; }
+  article ul{ margin:0 0 20px; padding-left:22px; }
+  article li{ margin-bottom:10px; }
+
+  .dish-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin:0 0 24px;
+  }
+  .dish-card{
+    border:1.5px solid var(--ink);
+    background:var(--paper-dim);
+    padding:16px;
+  }
+  .dish-card .dish-photo{
+    aspect-ratio:1/1;
+    background:var(--paper);
+    border:1.5px solid var(--rule);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:10px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.65rem;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    text-align:center;
+    padding:8px;
+  }
+  .dish-card h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1rem;
+    margin:0;
+  }
+  @media (max-width:560px){ .dish-grid{ grid-template-columns:1fr; } }
+
+  blockquote.pullquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.35rem;
+    line-height:1.5;
+    color:var(--ink);
+    border-left:4px solid var(--chili);
+    padding:4px 0 4px 22px;
+    margin:30px 0;
+  }
+  blockquote.pullquote cite{
+    display:block;
+    font-family:'JetBrains Mono', monospace;
+    font-style:normal;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    margin-top:10px;
+  }
+
+  .service-box{
+    background:var(--ink);
+    color:var(--paper);
+    padding:26px 24px;
+    margin:30px 0;
+  }
+  .service-box h2{
+    color:var(--paper);
+    border-top:3px solid var(--chili);
+    margin-top:0;
+  }
+  .service-row{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 0;
+    border-bottom:1px solid #3a342c;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+  }
+  .service-row:last-child{ border-bottom:none; }
+  .service-row .label{ color:#a39c8f; text-transform:uppercase; font-size:0.72rem; }
+  .service-row .value{ color:#fff; }
+  .service-box a{ color:var(--chili); text-decoration:none; }
+
+  .sources{
+    margin-top:44px;
+    padding-top:20px;
+    border-top:1.5px solid var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    line-height:1.8;
+  }
+
+  footer{
+    border-top:4px solid var(--ink);
+    padding:26px 24px 40px;
+    margin-top:50px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+  footer a{ text-decoration:none; color:var(--chili); }
+
+  @media (max-width:560px){
+    .masthead-row{flex-direction:column; align-items:flex-start;}
+    .masthead-meta{text-align:left;}
+    .stat-strip{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-row">
+    <h1 class="wordmark">Mesa em <em>Foco</em></h1>
+    <div class="masthead-meta">
+      <a href="index.html">← Voltar ao arquivo</a>
+    </div>
+  </div>
+</header>
+
+<div class="search-wrap">
+  <input type="text" id="pageSearch" placeholder="Buscar nesta edição (Ctrl+F funciona também)…">
+</div>
+
+<div class="hero-photo">
+  <div class="frame" style="border:none; background:none;">
+    <img src="fotos/placa-broca.jpg" alt="Placa do restaurante Broca em Pinheiros" style="width:100%; height:100%; object-fit:cover;">
+  </div>
+</div>
+
+<main>
+
+  <div class="kicker-row">
+    <span class="section-tag">Restaurante em Foco</span>
+    <span class="issue-meta">30 ago 2026</span>
+  </div>
+
+  <h1 class="headline">Broca: o bar com jeitinho de restaurante</h1>
+  <p class="dek">No Alto de Pinheiros, o chef Cadu Evangelisti — vice-campeão do Top Chef Brasil — transforma casualidade de boteco em cozinha autoral, com pratos pra compartilhar e cardápio que já virou point obrigatório da nova cena paulistana.</p>
+
+  <div class="byline">
+    <span>Por <strong>@ochefjoao</strong></span>
+    <span>Leitura de 5 min</span>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat">
+      <div class="stat-num">2024</div>
+      <div class="stat-label">Ano de abertura</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Vice-campeão</div>
+      <div class="stat-label">Top Chef Brasil 2021</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">R$38-68</div>
+      <div class="stat-label">Faixa de preço (pratos)</div>
+    </div>
+  </div>
+
+  <nav class="toc">
+    <a href="#conceito">Conceito</a>
+    <a href="#chef">Chef</a>
+    <a href="#pratos">Pratos</a>
+    <a href="#ambiente">Ambiente</a>
+    <a href="#reconhecimento">Reconhecimento</a>
+    <a href="#servico">Serviço</a>
+  </nav>
+
+  <article>
+
+    <h2>Qual é o restaurante</h2>
+    <p>Na Rua Aspicuelta, no Alto de Pinheiros — colado à Vila Madalena —, o Broca nasceu com uma proposta que já virou marca registrada: "restaurante com jeitinho de bar". Salão externo intimista, pratos para compartilhar, drinks autorais e uma cozinha que mistura referências sem medo de errar a mão no tempero.</p>
+
+    <h2>História</h2>
+    <p>Aberto em 2024, o Broca é o primeiro restaurante autoral do chef <strong>Cadu Evangelisti</strong>, paulista que já vinha com bagagem — passagens por grandes restaurantes, buffets e hotéis — e visibilidade nacional: participou do The Taste Brasil (GNT, 2015) e foi vice-campeão do Top Chef Brasil em 2021, um dos favoritos da temporada. A casa cresceu tão rápido que, em dezembro de 2024, ganhou uma segunda unidade dentro do Santo Beco by Mannu Carvalho, em Trancoso (BA).</p>
+
+    <h2 id="conceito">Conceito</h2>
+    <p>Casualidade com qualidade técnica: essa é a proposta central. O Broca funciona como bar — ambiente pet friendly, área externa arborizada, até área para fumantes — mas entrega cozinha autoral, com influências que transitam entre a culinária mexicana, tailandesa e ingredientes brasileiros. O próprio restaurante brinca com o que não serve: "o que você não vai encontrar: risoto (e nunca vai ter), sushi (e o Cadu não é japonês), Coca-Cola (mas tem Pepsi)".</p>
+
+    <h2 id="chef">Chef e equipe</h2>
+    <p><strong>Cadu Evangelisti</strong> comanda a cozinha e é hoje uma das figuras mais visíveis da nova geração gastronômica de São Paulo — soma 76 mil seguidores no Instagram e é embaixador do S.Pellegrino Young Chef, um dos concursos mais relevantes do circuito internacional para chefs emergentes.</p>
+
+    <div class="hero-photo" style="margin:0 0 24px; padding:0;">
+      <div class="frame" style="border:none; background:none; aspect-ratio:16/10;">
+        <img src="fotos/chef-cadu.jpg" alt="Chef Cadu Evangelisti, fundador do Broca" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+    </div>
+
+    <h2 id="pratos">Pratos destaque</h2>
+    <p>O cardápio é enxuto — mas criativo, segundo quem já visitou. Os itens mais citados por quem frequenta o Broca:</p>
+
+    <div class="dish-grid">
+      <div class="dish-card">
+        <div class="dish-photo" style="padding:0; border:none;">
+          <img src="fotos/espeto-lingua.jpg" alt="Espeto de língua na brasa" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <h4>Espeto de língua na brasa, salsa anticuchera e chimichurri (R$ 48)</h4>
+      </div>
+      <div class="dish-card">
+        <div class="dish-photo" style="padding:0; border:none;">
+          <img src="fotos/prato-molho-laranja.jpg" alt="Wonton com chili oil bolonhesudo" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <h4>Wonton com chili oil bolonhesudo, talharim de nabo e gergelim</h4>
+      </div>
+      <div class="dish-card">
+        <div class="dish-photo" style="padding:0; border:none;">
+          <img src="fotos/polenta-camarao.jpg" alt="Não é bobó, com camarão" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <h4>"Não é bobó": mandioca prensada, leite de coco, dendê e camarão (R$ 59)</h4>
+      </div>
+    </div>
+
+    <p>O espeto de língua é a pedida mais citada por quem visita o Broca — item fixo do cardápio desde a abertura, mesmo com o menu passando por atualizações ao longo do tempo.</p>
+
+    <h2 id="ambiente">Ambiente e drinks</h2>
+    <p>Despretensão com atenção ao detalhe: essa é a leitura mais comum de quem visita o Broca. Salão externo mais intimista, clima descontraído de bar, mas comida e drinks com nível de restaurante — o balcão costuma estar lotado, com a cozinha em ação à vista de quem está sentado ali.</p>
+
+    <div class="hero-photo" style="margin:0 0 24px; padding:0;">
+      <div class="frame" style="border:none; background:none; aspect-ratio:4/5;">
+        <img src="fotos/ambiente-balcao.jpg" alt="Balcão cheio no Broca" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+    </div>
+
+    <h2 id="reconhecimento">Reconhecimento</h2>
+    <ul>
+      <li><strong>Vice-campeão do Top Chef Brasil</strong> (2021) — uma das temporadas mais assistidas do reality</li>
+      <li><strong>Embaixador do S.Pellegrino Young Chef</strong>, concurso internacional de peso para chefs emergentes</li>
+      <li>Expansão de marca para <strong>Trancoso (BA)</strong> dentro de menos de um ano de operação em São Paulo — sinal de tração comercial forte</li>
+      <li>Presença orgânica constante em conteúdo de criadores gastronômicos no Instagram e TikTok, com o "espetinho de língua" citado repetidamente como prato-símbolo da casa</li>
+    </ul>
+
+    <blockquote class="pullquote">
+      "O que você não vai encontrar: risoto (e nunca vai ter), sushi (e o Cadu não é japonês), Coca-Cola (mas tem Pepsi)."
+      <cite>Descrição oficial do Broca — BaresSP</cite>
+    </blockquote>
+
+    <p>Vale registrar também o contraponto: a Folha de S.Paulo, em avaliação citada por usuários do TripAdvisor, classificou o atendimento como "desatento e antipático, em descompasso com a qualidade da cozinha" — crítica que reforça um padrão comum em casas que crescem rápido: a cozinha entrega, mas o serviço às vezes não acompanha o ritmo da demanda.</p>
+
+    <h2>Por quê é relevante agora</h2>
+    <p>O Broca resume um movimento que vem ganhando força na gastronomia paulistana: a linha entre "bar" e "restaurante" cada vez mais tênue, com casas descontraídas entregando cozinha autoral de verdade — não apenas petisco de boteco. Com um chef de visibilidade nacional à frente, expansão já em curso para fora de São Paulo e presença orgânica forte nas redes, o Broca é hoje um dos nomes mais citados quando o assunto é "onde comer bem sem cerimônia" na região de Pinheiros/Vila Madalena.</p>
+
+    <div class="service-box" id="servico">
+      <h2>Serviço</h2>
+      <div class="service-row">
+        <span class="label">Endereço</span>
+        <span class="value">Rua Aspicuelta, 429 — Alto de Pinheiros, SP</span>
+      </div>
+      <div class="service-row">
+        <span class="label">Faixa de preço</span>
+        <span class="value">Pratos de R$ 38 a R$ 68 (compartilháveis)</span>
+      </div>
+      <div class="service-row">
+        <span class="label">Instagram</span>
+        <span class="value"><a href="https://www.instagram.com/broca.sp/">@broca.sp</a></span>
+      </div>
+      <div class="service-row">
+        <span class="label">Chef</span>
+        <span class="value"><a href="https://www.instagram.com/caduevangelisti/">@caduevangelisti</a></span>
+      </div>
+    </div>
+
+    <div class="sources">
+      Fontes: TikTok (@taurinagens) · BaresSP · Em Pinheiros · Jornal de Brasília · Fecomércio Ceará · Mesa SP · NESS Management · TripAdvisor (citação Folha de S.Paulo)
+    </div>
+
+  </article>
+
+</main>
+
+<footer>
+  Mesa em Foco — gastronomia Brasil &amp; Mundo · <a href="https://instagram.com/mesa.emfoco">@mesa.emfoco</a>
+</footer>
+
+<script>
+  const pageSearch = document.getElementById('pageSearch');
+  const article = document.querySelector('article');
+  const originalHTML = article.innerHTML;
+
+  pageSearch.addEventListener('input', () => {
+    const q = pageSearch.value.trim();
+    if(!q){ article.innerHTML = originalHTML; return; }
+    const regex = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    article.innerHTML = originalHTML.replace(regex, '<mark>$1</mark>');
+    const first = article.querySelector('mark');
+    if(first) first.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+</script>
+
+</body>
+</html>
