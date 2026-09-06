@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Brasil parou de só comer pizza — Mesa em Foco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFDF7;
+    --paper-dim:#F3EEE2;
+    --ink:#181410;
+    --ink-soft:#5c554c;
+    --chili:#E7412C;
+    --saffron:#D98C00;
+    --plum:#5B1F44;
+    --basil:#2B6A4C;
+    --buzz:#D6336C;
+    --navy:#212E56;
+    --rule: rgba(24,20,16,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  mark{ background:#f5dfb0; color:var(--ink); padding:0 2px; }
+
+  header.masthead{
+    padding:28px 24px 20px;
+    border-bottom:4px solid var(--ink);
+    background:var(--paper);
+  }
+  .masthead-row{
+    max-width:820px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(1.8rem, 5vw, 2.6rem);
+    letter-spacing:-0.02em;
+    line-height:0.9;
+    margin:0;
+  }
+  .wordmark em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--chili);
+  }
+  .masthead-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+  .masthead-meta a{ text-decoration:none; border-bottom:1px solid var(--rule); }
+
+  .search-wrap{
+    max-width:820px;
+    margin:20px auto 0;
+    padding:0 24px;
+  }
+  .search-wrap input{
+    width:100%;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    padding:10px 14px;
+    border:1.5px solid var(--ink);
+    background:var(--paper-dim);
+    color:var(--ink);
+    border-radius:2px;
+  }
+  .search-wrap input::placeholder{ color:var(--ink-soft); }
+
+  main{
+    max-width:820px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  .kicker-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:34px 0 10px;
+  }
+  .section-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:#fff;
+    background:var(--saffron);
+    padding:4px 11px;
+    border-radius:20px;
+  }
+  .issue-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+  }
+
+  h1.headline{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(2rem, 5.5vw, 3.2rem);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin:0 0 14px;
+  }
+  p.dek{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.25rem;
+    line-height:1.45;
+    color:var(--ink-soft);
+    margin:0 0 28px;
+    max-width:640px;
+  }
+
+  .byline{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:12px 0;
+    margin-bottom:32px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .byline strong{ color:var(--ink); }
+
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--ink);
+    border:1.5px solid var(--ink);
+    margin:0 0 36px;
+  }
+  .stat{
+    background:var(--paper);
+    padding:18px 16px;
+    text-align:center;
+  }
+  .stat-num{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:1.6rem;
+    color:var(--saffron);
+    line-height:1;
+    margin-bottom:6px;
+  }
+  .stat-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+  }
+
+  .toc{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    padding:16px 0;
+    margin-bottom:30px;
+    border-bottom:1.5px solid var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .toc a{ text-decoration:none; color:var(--saffron); border-bottom:1px dotted var(--saffron); }
+
+  article{
+    font-size:1.05rem;
+    line-height:1.7;
+  }
+  article h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.5rem;
+    margin:40px 0 14px;
+    padding-top:6px;
+    border-top:3px solid var(--saffron);
+    scroll-margin-top:20px;
+  }
+  article p{ margin:0 0 18px; }
+  article ul{ margin:0 0 20px; padding-left:22px; }
+  article li{ margin-bottom:10px; }
+
+  .ranking-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:0 0 24px;
+    font-size:0.95rem;
+  }
+  .ranking-table th{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    text-align:left;
+    padding:8px 10px;
+    border-bottom:2px solid var(--ink);
+  }
+  .ranking-table td{
+    padding:12px 10px;
+    border-bottom:1px solid var(--rule);
+  }
+  .ranking-table .pos{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    color:var(--saffron);
+    white-space:nowrap;
+  }
+  .ranking-table .nome{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+  }
+  .ranking-table .casa{
+    color:var(--ink-soft);
+    font-size:0.9rem;
+  }
+
+  blockquote.pullquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.35rem;
+    line-height:1.5;
+    color:var(--ink);
+    border-left:4px solid var(--saffron);
+    padding:4px 0 4px 22px;
+    margin:30px 0;
+  }
+  blockquote.pullquote cite{
+    display:block;
+    font-family:'JetBrains Mono', monospace;
+    font-style:normal;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    margin-top:10px;
+  }
+
+  .prognostico-box{
+    background:var(--ink);
+    color:var(--paper);
+    padding:26px 24px;
+    margin:30px 0;
+  }
+  .prognostico-box h2{
+    color:var(--paper);
+    border-top:3px solid var(--saffron);
+    margin-top:0;
+  }
+  .prognostico-box p{ color:#d8d3c8; }
+  .prognostico-box strong{ color:#fff; }
+
+  .sources{
+    margin-top:44px;
+    padding-top:20px;
+    border-top:1.5px solid var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    line-height:1.8;
+  }
+
+  footer{
+    border-top:4px solid var(--ink);
+    padding:26px 24px 40px;
+    margin-top:50px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+  footer a{ text-decoration:none; color:var(--saffron); }
+
+  @media (max-width:560px){
+    .masthead-row{flex-direction:column; align-items:flex-start;}
+    .masthead-meta{text-align:left;}
+    .stat-strip{grid-template-columns:1fr;}
+    .ranking-table .casa{ display:block; }
+  }
+  .hero-photo{
+    margin:0 0 24px;
+    padding:0;
+  }
+  .hero-photo .frame{
+    position:relative;
+    border:2px solid var(--ink);
+  }
+  .hero-photo .frame::before,
+  .hero-photo .frame::after{
+    content:'';
+    position:absolute;
+    width:26px; height:26px;
+    border-color:var(--saffron);
+    border-style:solid;
+  }
+  .hero-photo .frame::before{ top:-2px; left:-2px; border-width:4px 0 0 4px; }
+  .hero-photo .frame::after{ bottom:-2px; right:-2px; border-width:0 4px 4px 0; }
+
+  .photo-grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin:0 0 24px;
+  }
+  @media (max-width:560px){ .photo-grid-2{ grid-template-columns:1fr; } }
+
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-row">
+    <h1 class="wordmark">Mesa em <em>Foco</em></h1>
+    <div class="masthead-meta">
+      <a href="index.html">← Voltar ao arquivo</a>
+    </div>
+  </div>
+</header>
+
+<div class="search-wrap">
+  <input type="text" id="pageSearch" placeholder="Buscar nesta edição (Ctrl+F funciona também)…">
+</div>
+
+<div class="hero-photo" style="max-width:820px; margin:24px auto 0; padding:0 24px;">
+  <div class="frame">
+    <img src="fotos/forno-lenha.jpg" alt="Forno a lenha em ação" style="width:100%; aspect-ratio:16/10; object-fit:cover; display:block;">
+  </div>
+</div>
+
+<main>
+
+  <div class="kicker-row">
+    <span class="section-tag">Tendência em Alta</span>
+    <span class="issue-meta">03 set 2026</span>
+  </div>
+
+  <h1 class="headline">O Brasil parou de só comer pizza</h1>
+  <p class="dek">Cinco pizzaiolos que atuam no país entraram para o The Best Pizza Awards 2026 — o "Oscar dos pizzaiolos" — enquanto novos estilos como a pizza Detroit já ganham espaço nos cardápios de São Paulo.</p>
+
+  <div class="byline">
+    <span>Por <strong>@ochefjoao</strong></span>
+    <span>Leitura de 6 min</span>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Brasileiros no top 100 mundial</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">22 de 50</div>
+      <div class="stat-label">Melhores pizzarias da América Latina são BR</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3,8 mi</div>
+      <div class="stat-label">Pizzas produzidas por dia no Brasil</div>
+    </div>
+  </div>
+
+  <nav class="toc">
+    <a href="#marco">O marco de 2026</a>
+    <a href="#leggera">A Leggera</a>
+    <a href="#detroit">Novo estilo</a>
+    <a href="#porque">Por quê agora</a>
+    <a href="#prognostico">Prognóstico</a>
+  </nav>
+
+  <article>
+
+    <h2>O que é?</h2>
+    <p>Por décadas, falar em pizza de excelência era olhar, inevitavelmente, para a Itália. Esse cenário mudou de forma mensurável em 2026: <strong>cinco pizzaiolos que atuam no Brasil entraram para o The Best Pizza Awards</strong>, um dos rankings mais respeitados do setor — o "Oscar dos pizzaiolos" — colocando São Paulo e Rio de Janeiro no mapa mundial da pizza de alto nível.</p>
+    <p>É a combinação de dois movimentos simultâneos: <strong>reconhecimento internacional pela técnica clássica</strong> e <strong>experimentação de formato dentro de casa</strong>.</p>
+
+    <h2>Origem</h2>
+    <p>O Brasil sempre foi um gigante do consumo — o país viu cerca de 10 mil pizzarias abrirem entre 1962 e 2007, mas nos 12 anos seguintes (2008–2020), esse número saltou para mais de 73 mil novas casas. Em 2023, a produção diária de pizzas no país chegava a 3,8 milhões de unidades, sendo 870 mil só em São Paulo — que hoje é a <strong>segunda cidade que mais consome pizza no mundo</strong>.</p>
+    <p>Mas quantidade não é o mesmo que reconhecimento técnico internacional. Essa mudança começou a aparecer nos rankings de forma mais consistente a partir de 2024, até culminar no resultado de 2026.</p>
+
+    <h2 id="marco">O marco de 2026</h2>
+    <p>Em 24 de junho, em Milão, o The Best Pizza Awards revelou sua quarta edição, com votos de mais de 500 jurados de 60 países avaliando técnica de fermentação, qualidade dos insumos, regularidade de forneamento, serviço e impacto cultural. Cinco brasileiros entraram no top 100 mundial:</p>
+
+    <table class="ranking-table">
+      <tr><th>Posição</th><th>Pizzaiolo</th><th>Casa</th></tr>
+      <tr><td class="pos">42º</td><td class="nome">Dani Branca</td><td class="casa">Soffio Pizzeria, SP</td></tr>
+      <tr><td class="pos">51º</td><td class="nome">Fellipe Zanuto</td><td class="casa">A Pizza da Mooca, SP</td></tr>
+      <tr><td class="pos">55º</td><td class="nome">Matheus Ramos</td><td class="casa">QT Pizza Bar, SP</td></tr>
+      <tr><td class="pos">78º</td><td class="nome">Pedro Siqueira</td><td class="casa">Sìsì, RJ</td></tr>
+      <tr><td class="pos">83º</td><td class="nome">André Guidon</td><td class="casa">Leggera Pizza Napoletana, SP</td></tr>
+    </table>
+
+    <p><strong>Dani Branca</strong>, o melhor colocado, é italiano radicado no Brasil há mais de duas décadas — começou a carreira na Paestum Forneria, no interior de São Paulo, antes de assumir os fornos da Soffio. <strong>Fellipe Zanuto</strong>, um dos pioneiros do estilo napolitano na capital paulista, subiu cinco posições em relação ao ano anterior. <strong>Pedro Siqueira</strong> é um dos dois únicos representantes cariocas na lista, ao lado de Sei Shiroma, da Ferro e Farinha.</p>
+
+    <div class="photo-grid-2">
+      <div class="hero-photo">
+        <div class="frame">
+          <img src="fotos/dani-branca.jpg" alt="Dani Branca, chef da Soffio Pizzeria" style="width:100%; aspect-ratio:3/4; object-fit:cover; display:block;">
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="frame">
+          <img src="fotos/premios-soffio.jpg" alt="Placas The Best Pizza 2025 e 2026 na Soffio" style="width:100%; aspect-ratio:3/4; object-fit:cover; display:block;">
+        </div>
+      </div>
+    </div>
+
+    <blockquote class="pullquote">
+      "De ex-engenheiro de som a pizzaiolo napolitano: André Guidon trocou de carreira em 2006, estudou em Nápoles na Associação Verace Pizza Napoletana, e voltou ao Brasil em 2013 para abrir a Leggera."
+      <cite>Trajetória compilada de CNN Brasil e The Pig Journal</cite>
+    </blockquote>
+
+    <h2 id="leggera">O domínio da Leggera</h2>
+    <p>Se o The Best Pizza Awards mede pizzaiolos individuais, o <strong>50 Top Pizza Latin America 2026</strong> mede casas — e aqui o domínio brasileiro é ainda mais evidente: <strong>22 das 50 melhores pizzarias da América Latina são brasileiras</strong>, com São Paulo concentrando seis casas no ranking, quatro delas no top 10.</p>
+    <p>No topo de tudo está a <strong>Leggera Pizza Napoletana</strong>, de André Guidon — eleita a número 1 da América Latina pelo <strong>terceiro ano consecutivo</strong>. O critério de avaliação é rigoroso: jurados anônimos visitam as pizzarias de forma independente e pagam a própria conta.</p>
+
+    <div class="hero-photo">
+      <div class="frame">
+        <img src="fotos/pizzas-napolitanas.jpg" alt="Variedade de pizzas napolitanas" style="width:100%; aspect-ratio:4/5; object-fit:cover; display:block;">
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <div class="frame">
+        <img src="fotos/qt-pizza-bar.jpg" alt="Pizza do QT Pizza Bar, de Matheus Ramos" style="width:100%; aspect-ratio:4/5; object-fit:cover; display:block;">
+      </div>
+    </div>
+
+    <h2 id="detroit">Enquanto isso, dentro de casa: novos estilos ganham espaço</h2>
+    <p>Ao mesmo tempo em que a tradição napolitana brasileira vence prêmios lá fora, a cena doméstica está longe de ser monolítica. Um dos movimentos mais visíveis é a chegada da <strong>pizza estilo Detroit</strong> — massa alta e fofinha em bandeja retangular, criada originalmente em 1946 na fábrica automotiva de Detroit (Michigan), com muito queijo até a borda, formando aquela casca crocante e caramelizada característica.</p>
+
+    <div class="hero-photo">
+      <div class="frame">
+        <img src="fotos/pizza-detroit.jpg" alt="Fatia de pizza estilo Detroit" style="width:100%; aspect-ratio:4/5; object-fit:cover; display:block;">
+      </div>
+    </div>
+
+    <p>Casas como a <strong>Paralela Pizza</strong>, em São Paulo, já assumem o estilo como identidade própria — descrevendo-se literalmente como "Estilo Detroit, fermentação natural" na própria bio. A proposta mistura o formato americano com a técnica de fermentação natural que já é padrão de qualidade entre os pizzaiolos brasileiros premiados.</p>
+
+    <h2 id="porque">Por quê agora</h2>
+    <p>Três fatores explicam o momento:</p>
+    <ul>
+      <li><strong>Maturação técnica geracional</strong>: os pizzaiolos premiados em 2026 não são estreantes — Dani Branca está no Brasil há mais de 20 anos, André Guidon desde 2013. O reconhecimento é resultado de uma década de refinamento técnico, não um pico isolado.</li>
+      <li><strong>Volume que virou laboratório</strong>: com 3,8 milhões de pizzas produzidas por dia, o Brasil tem escala suficiente para que subculturas de nicho coexistam e se profissionalizem em paralelo ao mercado de massa.</li>
+      <li><strong>Circulação internacional de referência</strong>: chefs como Guidon estudaram formalmente na Itália e trouxeram certificação técnica para casa — ao mesmo tempo em que casas importam formatos americanos, mostrando um fluxo de influência em várias direções.</li>
+    </ul>
+
+    <div class="prognostico-box" id="prognostico">
+      <h2>Prognóstico</h2>
+      <p>A entrada consistente de brasileiros em rankings internacionais nos últimos anos — não um resultado isolado de 2026 — sugere que o momento tem raiz estrutural, não é sorte de uma edição. A combinação de alto consumo doméstico com formação técnica internacional tende a se manter.</p>
+      <p><strong>Nosso palpite:</strong> o próximo capítulo não deve ser mais reconhecimento pela pizza napolitana clássica — isso já está consolidado. A aposta é que os próximos anos tragam mais <strong>hibridismo de estilo</strong> (napolitana com técnica brasileira de insumo, Detroit com fermentação natural) como a verdadeira assinatura da pizza brasileira daqui pra frente.</p>
+    </div>
+
+    <div class="sources">
+      Fontes: O Tempo · CNN Brasil Viagem &amp; Gastronomia · Seu Dinheiro · Viva a Cidade · Catraca Livre · Melhores Destinos · The Pig Journal · Wikipedia (Pizza in Brazil) · Instagram (@paralela_pizza) · Detroit Pizza SP
+    </div>
+
+  </article>
+
+</main>
+
+<footer>
+  Mesa em Foco — gastronomia Brasil &amp; Mundo · <a href="https://instagram.com/mesa.emfoco">@mesa.emfoco</a>
+</footer>
+
+<script>
+  const pageSearch = document.getElementById('pageSearch');
+  const article = document.querySelector('article');
+  const originalHTML = article.innerHTML;
+
+  pageSearch.addEventListener('input', () => {
+    const q = pageSearch.value.trim();
+    if(!q){ article.innerHTML = originalHTML; return; }
+    const regex = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    article.innerHTML = originalHTML.replace(regex, '<mark>$1</mark>');
+    const first = article.querySelector('mark');
+    if(first) first.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+</script>
+
+</body>
+</html>
