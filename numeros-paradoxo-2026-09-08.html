@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O setor fatura mais. O brasileiro vai menos. — Mesa em Foco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFDF7;
+    --paper-dim:#F3EEE2;
+    --ink:#181410;
+    --ink-soft:#5c554c;
+    --chili:#E7412C;
+    --saffron:#D98C00;
+    --plum:#5B1F44;
+    --basil:#2B6A4C;
+    --buzz:#D6336C;
+    --navy:#212E56;
+    --rule: rgba(24,20,16,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  mark{ background:#ecd3e0; color:var(--ink); padding:0 2px; }
+
+  header.masthead{
+    padding:28px 24px 20px;
+    border-bottom:4px solid var(--ink);
+    background:var(--paper);
+  }
+  .masthead-row{
+    max-width:820px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(1.8rem, 5vw, 2.6rem);
+    letter-spacing:-0.02em;
+    line-height:0.9;
+    margin:0;
+  }
+  .wordmark em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--chili);
+  }
+  .masthead-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+  .masthead-meta a{ text-decoration:none; border-bottom:1px solid var(--rule); }
+
+  .search-wrap{
+    max-width:820px;
+    margin:20px auto 0;
+    padding:0 24px;
+  }
+  .search-wrap input{
+    width:100%;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    padding:10px 14px;
+    border:1.5px solid var(--ink);
+    background:var(--paper-dim);
+    color:var(--ink);
+    border-radius:2px;
+  }
+  .search-wrap input::placeholder{ color:var(--ink-soft); }
+
+  main{
+    max-width:820px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  .kicker-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:34px 0 10px;
+  }
+  .section-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:#fff;
+    background:var(--plum);
+    padding:4px 11px;
+    border-radius:20px;
+  }
+  .issue-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+  }
+
+  h1.headline{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(2rem, 5.5vw, 3.2rem);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin:0 0 14px;
+  }
+  p.dek{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.25rem;
+    line-height:1.45;
+    color:var(--ink-soft);
+    margin:0 0 28px;
+    max-width:640px;
+  }
+
+  .byline{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:12px 0;
+    margin-bottom:32px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .byline strong{ color:var(--ink); }
+
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--ink);
+    border:1.5px solid var(--ink);
+    margin:0 0 36px;
+  }
+  .stat{
+    background:var(--paper);
+    padding:18px 16px;
+    text-align:center;
+  }
+  .stat-num{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:1.6rem;
+    color:var(--plum);
+    line-height:1;
+    margin-bottom:6px;
+  }
+  .stat-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+  }
+
+  .toc{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    padding:16px 0;
+    margin-bottom:30px;
+    border-bottom:1.5px solid var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .toc a{ text-decoration:none; color:var(--plum); border-bottom:1px dotted var(--plum); }
+
+  article{
+    font-size:1.05rem;
+    line-height:1.7;
+  }
+  article h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.5rem;
+    margin:40px 0 14px;
+    padding-top:6px;
+    border-top:3px solid var(--plum);
+    scroll-margin-top:20px;
+  }
+  article p{ margin:0 0 18px; }
+  article ul{ margin:0 0 20px; padding-left:22px; }
+  article li{ margin-bottom:10px; }
+
+  .bar-chart{
+    margin:24px 0;
+  }
+  .bar-row{
+    margin-bottom:26px;
+  }
+  .bar-label{
+    font-family:'Work Sans', sans-serif;
+    font-size:0.95rem;
+    margin-bottom:8px;
+  }
+  .bar-track{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .bar-fill{
+    height:30px;
+    background:var(--plum);
+  }
+  .bar-pct{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    color:var(--plum);
+    white-space:nowrap;
+  }
+
+  blockquote.pullquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.35rem;
+    line-height:1.5;
+    color:var(--ink);
+    border-left:4px solid var(--plum);
+    padding:4px 0 4px 22px;
+    margin:30px 0;
+  }
+  blockquote.pullquote cite{
+    display:block;
+    font-family:'JetBrains Mono', monospace;
+    font-style:normal;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    margin-top:10px;
+  }
+
+  .prognostico-box{
+    background:var(--ink);
+    color:var(--paper);
+    padding:26px 24px;
+    margin:30px 0;
+  }
+  .prognostico-box h2{
+    color:var(--paper);
+    border-top:3px solid var(--plum);
+    margin-top:0;
+  }
+  .prognostico-box p{ color:#d8d3c8; }
+  .prognostico-box strong{ color:#fff; }
+
+  .sources{
+    margin-top:44px;
+    padding-top:20px;
+    border-top:1.5px solid var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    line-height:1.8;
+  }
+
+  footer{
+    border-top:4px solid var(--ink);
+    padding:26px 24px 40px;
+    margin-top:50px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+  footer a{ text-decoration:none; color:var(--plum); }
+
+  @media (max-width:560px){
+    .masthead-row{flex-direction:column; align-items:flex-start;}
+    .masthead-meta{text-align:left;}
+    .stat-strip{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-row">
+    <h1 class="wordmark">Mesa em <em>Foco</em></h1>
+    <div class="masthead-meta">
+      <a href="index.html">← Voltar ao arquivo</a>
+    </div>
+  </div>
+</header>
+
+<div class="search-wrap">
+  <input type="text" id="pageSearch" placeholder="Buscar nesta edição (Ctrl+F funciona também)…">
+</div>
+
+<main>
+
+  <div class="kicker-row">
+    <span class="section-tag">Números que Importam</span>
+    <span class="issue-meta">08 set 2026</span>
+  </div>
+
+  <h1 class="headline">O setor fatura mais. O brasileiro vai menos.</h1>
+  <p class="dek">R$ 495 bilhões de faturamento em 2025, mas 90% dos consumidores reduziram gastos com comida fora de casa. O paradoxo que todo dono de restaurante precisa entender antes de planejar 2026.</p>
+
+  <div class="byline">
+    <span>Por <strong>@ochefjoao</strong></span>
+    <span>Leitura de 5 min</span>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat">
+      <div class="stat-num">R$ 495 bi</div>
+      <div class="stat-label">Faturamento do setor em 2025</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">90%</div>
+      <div class="stat-label">Reduziram gastos com comida fora</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">45%</div>
+      <div class="stat-label">Foram menos a restaurantes</div>
+    </div>
+  </div>
+
+  <nav class="toc">
+    <a href="#numero">O número</a>
+    <a href="#contexto">Contexto</a>
+    <a href="#por-que">Por quê importa</a>
+    <a href="#operadores">O que fazer</a>
+    <a href="#prognostico">Prognóstico</a>
+  </nav>
+
+  <article>
+
+    <h2 id="numero">O número</h2>
+    <p><strong>R$ 495 bilhões.</strong> Foi o faturamento do setor de alimentação fora do lar em 2025 — crescimento real de 0,92% sobre 2024, segundo dados da Abrasel/PMS. Parece bom. Mas um segundo número, de outra pesquisa, conta uma história diferente: <strong>90% dos consumidores reduziram os gastos com refeições fora de casa</strong>, segundo a Galunion.</p>
+    <p>O setor cresce em faturamento. O consumidor está gastando menos por vez, com mais critério, ou indo com menos frequência. Os dois números são verdadeiros ao mesmo tempo — e é exatamente esse paradoxo que qualquer dono de restaurante precisa entender agora.</p>
+
+    <h2 id="contexto">Contexto histórico</h2>
+    <p>O crescimento de 2025 não é acidente nem sazonalidade: o setor de food service vem em trajetória ascendente há alguns anos, muito puxado por delivery, digitalização e reorganização pós-pandemia. Hoje são <strong>1,37 milhão de estabelecimentos</strong> e <strong>4,9 milhões de empregos</strong> — com 33 mil vagas formais só no primeiro semestre de 2025. A FGV estima que cada R$ 1.000 gastos em bares e restaurantes injetam R$ 3.650 na economia, via efeitos diretos, indiretos e induzidos.</p>
+    <p>O outro lado da moeda: a pesquisa "Alimentação Hoje", da Galunion, com 1.008 participantes das classes A, B e C, mostrou queda de <strong>11 pontos percentuais</strong> no uso de delivery entre abril de 2024 e março de 2025 — de 92% para 81% dos entrevistados.</p>
+
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Bares e casas de shows</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:400px;"></div>
+          <span class="bar-pct">-48%</span>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Praças de alimentação</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:400px;"></div>
+          <span class="bar-pct">-48%</span>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Restaurantes/lanchonetes</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:375px;"></div>
+          <span class="bar-pct">-45%</span>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Delivery (abr/24-mar/25)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:92px;"></div>
+          <span class="bar-pct">-11%</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="por-que">Por quê importa</h2>
+    <p>Esse não é um dado abstrato — ele explica um comportamento que qualquer operador já está sentindo na prática: salão mais vazio em dias de semana, ticket médio subindo mas o número de mesas ocupadas caindo, cliente mais seletivo sobre onde e quando sai.</p>
+    <p>A explicação, segundo a própria Galunion, é multifatorial:</p>
+    <ul>
+      <li><strong>Inflação nos itens essenciais</strong> — arroz, feijão, leite, carne, ovos</li>
+      <li><strong>Aumento de custo de produção</strong> repassado ao preço final</li>
+      <li><strong>Variação cambial</strong> afetando a cadeia de suprimentos</li>
+    </ul>
+    <p>O resultado prático: <strong>62% dos consumidores</strong> que levam marmita para o trabalho apontam economia como motivo principal, seguido por alimentação mais saudável (60%) e economia de tempo (31% — sobe para 42% entre 18-24 anos).</p>
+
+    <h2 id="operadores">O que os operadores já estão fazendo</h2>
+    <p>Entre quem ainda sai para comer, o comportamento também mudou: <strong>38%</strong> dos consumidores passaram a aproveitar mais promoções e cupons, <strong>36%</strong> reduziram frequência deliberadamente, e <strong>35%</strong> optaram por preparar mais refeições em casa.</p>
+
+    <blockquote class="pullquote">
+      "O ano não será sobre extremos, será sobre equilíbrio: quem entregar simplicidade bem executada tende a se sair melhor mesmo num ano mais desafiador."
+      <cite>Simone Galante, fundadora e CEO da Galunion</cite>
+    </blockquote>
+
+    <p>Um ponto de atenção adicional que a Galunion já monitora: <strong>22% dos consumidores</strong> usam, já usaram ou pretendem usar medicamentos à base de GLP-1 (como Ozempic) — número que sobe para <strong>40%</strong> na classe A. O efeito colateral no apetite já está mudando hábitos alimentares e pode se tornar um fator estrutural, não passageiro, para o setor.</p>
+
+    <div class="prognostico-box" id="prognostico">
+      <h2>Prognóstico</h2>
+      <p>Simone Galante, CEO da Galunion, projeta para 2026 um crescimento real modesto no gasto em alimentação fora do domicílio — entre 0,8% (cenário conservador) e 3,6% (cenário otimista).</p>
+      <p><strong>Um dado positivo:</strong> a Galunion projeta o turismo — doméstico, internacional e de negócios — como uma das principais âncoras do ano, com até US$ 9,2 bilhões em turismo receptivo esperados, dos quais mais de US$ 1,7 bilhão entrando diretamente no setor de alimentação fora do lar.</p>
+      <p>O paradoxo, no fim, resume o momento: o mercado como um todo está maior, mas a fatia que cada consumidor individual está disposto a gastar está sendo cortada com bisturi, não com machado.</p>
+    </div>
+
+    <div class="sources">
+      Fontes: Abrasel/PMS · Fundação Getúlio Vargas (FGV) · Galunion ("Alimentação Hoje: a visão do consumidor") · Tese Galunion (Panorama 2026)
+    </div>
+
+  </article>
+
+</main>
+
+<footer>
+  Mesa em Foco — gastronomia Brasil &amp; Mundo · <a href="https://instagram.com/mesa.emfoco">@mesa.emfoco</a>
+</footer>
+
+<script>
+  const pageSearch = document.getElementById('pageSearch');
+  const article = document.querySelector('article');
+  const originalHTML = article.innerHTML;
+
+  pageSearch.addEventListener('input', () => {
+    const q = pageSearch.value.trim();
+    if(!q){ article.innerHTML = originalHTML; return; }
+    const regex = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    article.innerHTML = originalHTML.replace(regex, '<mark>$1</mark>');
+    const first = article.querySelector('mark');
+    if(first) first.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+</script>
+
+</body>
+</html>
