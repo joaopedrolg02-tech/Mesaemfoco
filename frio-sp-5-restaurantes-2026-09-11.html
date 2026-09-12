@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 restaurantes pra fugir do frio em SP — Mesa em Foco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFDF7;
+    --paper-dim:#F3EEE2;
+    --ink:#181410;
+    --ink-soft:#5c554c;
+    --chili:#E7412C;
+    --saffron:#D98C00;
+    --plum:#5B1F44;
+    --basil:#2B6A4C;
+    --buzz:#D6336C;
+    --navy:#212E56;
+    --rule: rgba(24,20,16,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  mark{ background:#f5dfb0; color:var(--ink); padding:0 2px; }
+
+  header.masthead{
+    padding:28px 24px 20px;
+    border-bottom:4px solid var(--ink);
+    background:var(--paper);
+  }
+  .masthead-row{
+    max-width:820px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(1.8rem, 5vw, 2.6rem);
+    letter-spacing:-0.02em;
+    line-height:0.9;
+    margin:0;
+  }
+  .wordmark em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--chili);
+  }
+  .masthead-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+  .masthead-meta a{ text-decoration:none; border-bottom:1px solid var(--rule); }
+
+  .search-wrap{
+    max-width:820px;
+    margin:20px auto 0;
+    padding:0 24px;
+  }
+  .search-wrap input{
+    width:100%;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    padding:10px 14px;
+    border:1.5px solid var(--ink);
+    background:var(--paper-dim);
+    color:var(--ink);
+    border-radius:2px;
+  }
+  .search-wrap input::placeholder{ color:var(--ink-soft); }
+
+  main{
+    max-width:820px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  .kicker-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:34px 0 10px;
+  }
+  .section-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:#fff;
+    background:var(--navy);
+    padding:4px 11px;
+    border-radius:20px;
+  }
+  .issue-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+  }
+
+  h1.headline{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(2rem, 5.5vw, 3.2rem);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin:0 0 14px;
+  }
+  p.dek{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.25rem;
+    line-height:1.45;
+    color:var(--ink-soft);
+    margin:0 0 28px;
+    max-width:640px;
+  }
+
+  .byline{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:12px 0;
+    margin-bottom:32px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .byline strong{ color:var(--ink); }
+
+  article{
+    font-size:1.05rem;
+    line-height:1.7;
+  }
+  article > p:first-of-type{
+    font-size:1.1rem;
+    margin-bottom:36px;
+  }
+
+  .restaurant-block{
+    margin-bottom:48px;
+  }
+  .restaurant-block h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.6rem;
+    margin:0 0 6px;
+    padding-top:14px;
+    border-top:3px solid var(--chili);
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+  }
+  .restaurant-block h2 .num{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:1.1em;
+    color:var(--chili);
+  }
+  .restaurant-block .local{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+  }
+  .restaurant-block .frame{
+    position:relative;
+    border:2px solid var(--ink);
+    margin-bottom:16px;
+  }
+  .restaurant-block .frame::before,
+  .restaurant-block .frame::after{
+    content:'';
+    position:absolute;
+    width:24px; height:24px;
+    border-color:var(--chili);
+    border-style:solid;
+  }
+  .restaurant-block .frame::before{ top:-2px; left:-2px; border-width:4px 0 0 4px; }
+  .restaurant-block .frame::after{ bottom:-2px; right:-2px; border-width:0 4px 4px 0; }
+  .restaurant-block .frame img{
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    display:block;
+  }
+  .restaurant-block .frame.placeholder{
+    aspect-ratio:4/3;
+    background:var(--paper-dim);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .restaurant-block .frame.placeholder span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+  }
+  .restaurant-block p{ margin:0 0 12px; }
+  .restaurant-block .social{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    color:var(--chili);
+    text-decoration:none;
+  }
+
+  .sources{
+    margin-top:44px;
+    padding-top:20px;
+    border-top:1.5px solid var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    line-height:1.8;
+  }
+
+  footer{
+    border-top:4px solid var(--ink);
+    padding:26px 24px 40px;
+    margin-top:50px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+  footer a{ text-decoration:none; color:var(--chili); }
+
+  @media (max-width:560px){
+    .masthead-row{flex-direction:column; align-items:flex-start;}
+    .masthead-meta{text-align:left;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-row">
+    <h1 class="wordmark">Mesa em <em>Foco</em></h1>
+    <div class="masthead-meta">
+      <a href="index.html">← Voltar ao arquivo</a>
+    </div>
+  </div>
+</header>
+
+<div class="search-wrap">
+  <input type="text" id="pageSearch" placeholder="Buscar nesta edição (Ctrl+F funciona também)…">
+</div>
+
+<main>
+
+  <div class="kicker-row">
+    <span class="section-tag">Sábado de Frio</span>
+    <span class="issue-meta">11 set 2026</span>
+  </div>
+
+  <h1 class="headline">5 restaurantes pra fugir do frio em São Paulo</h1>
+  <p class="dek">Massa, ramen e bolo quente pra esquentar o fim de semana — do italiano tradicional ao ramen artesanal.</p>
+
+  <div class="byline">
+    <span>Por <strong>@ochefjoao</strong></span>
+    <span>Leitura de 4 min</span>
+  </div>
+
+  <article>
+
+    <p>Com a temperatura caindo, nada como um prato quente, um caldo reconfortante ou uma massa bem servida pra esquentar o fim de semana. Separamos 5 endereços em São Paulo que são certeiros pra esses dias mais frios.</p>
+
+    <div class="restaurant-block">
+      <h2><span class="num">1.</span> Brodo Ristoranti</h2>
+      <p class="local">Itaim Bibi</p>
+      <div class="frame">
+        <img src="fotos/brodo.jpg" alt="Prato de massa do Brodo Ristoranti">
+      </div>
+      <p>Desde 2013 no Itaim Bibi, o Brodo é comandado pela chef Mariana Valentini, que escolheu o nome pensando exatamente nisso: brodo significa caldo em italiano, "a alma da comida". A casa serve massas orgânicas feitas à mão, com decoração retrô e 80 lugares — o tipo de lugar que pede uma taça de vinho tinto e um prato de massa bem quente.</p>
+      <p><strong>Endereço:</strong> Rua Comendador Miguel Calfat, 295 — Itaim Bibi</p>
+      <a class="social" href="https://www.instagram.com/brodoristoranti/">@brodoristoranti</a>
+    </div>
+
+    <div class="restaurant-block">
+      <h2><span class="num">2.</span> Sertó</h2>
+      <p class="local">República</p>
+      <div class="frame">
+        <img src="fotos/serto-bolo.jpg" alt="Bolo Misericórdia do Sertó">
+      </div>
+      <p>Bar e restaurante na região central, na Rua Major Sertório, com cardápio assinado pelo chef Marcelo Magaldi. A casa é queridinha das redes por unir petiscos bem executados a drinks autorais e clássicos — ambiente aconchegante, prato bem servido, clima de bar de bairro com padrão elevado. O bolo Misericórdia, servido com chocolate quente derramado na hora, é apontado como imperdível.</p>
+      <p><strong>Endereço:</strong> Rua Major Sertório, 106 — República</p>
+      <a class="social" href="https://www.instagram.com/serto.sp/">@serto.sp</a>
+    </div>
+
+    <div class="restaurant-block">
+      <h2><span class="num">3.</span> Jojo Ramen</h2>
+      <p class="local">4 unidades em SP</p>
+      <div class="frame">
+        <img src="fotos/jojo-ramen.jpg" alt="Tigela de ramen do Jojo Ramen">
+      </div>
+      <p>Fundado em 2016 no Paraíso, o Jojo se tornou sinônimo de ramen de qualidade em São Paulo — caldo e macarrão feitos na casa, receita desenvolvida com colaboração de um Ramen Master japonês. Hoje já são quatro unidades na cidade (Paraíso, Vila Mariana, Santa Cecília e Pinheiros). Nada mais indicado pro frio que um caldo quente de ramen artesanal.</p>
+      <a class="social" href="https://www.instagram.com/jojo_ramen/">@jojo_ramen</a>
+    </div>
+
+    <div class="restaurant-block">
+      <h2><span class="num">4.</span> Casa Santo Antônio</h2>
+      <p class="local">Granja Julieta</p>
+      <div class="frame">
+        <img src="fotos/casa-santo-antonio.jpg" alt="Prato gratinado da Casa Santo Antônio">
+      </div>
+      <p>Instalada numa casa charmosa dos anos 1960, na Zona Sul, a Casa Santo Antônio é reconhecida com o Bib Gourmand do Guia MICHELIN há 11 anos consecutivos — reconhecimento para melhor relação custo-benefício. Quem assina o cardápio é o chef e sócio Sandro Aires, que passou 14 anos pela rede Fasano. O spaghetti alla carbonara é apontado como prato-destaque pelo próprio Guia MICHELIN — parada obrigatória pra quem busca aconchego em dia frio.</p>
+      <p><strong>Endereço:</strong> Avenida João Carlos da Silva Borges, 764 — Granja Julieta</p>
+      <a class="social" href="https://www.instagram.com/casasantoantonio/">@casasantoantonio</a>
+    </div>
+
+    <div class="restaurant-block">
+      <h2><span class="num">5.</span> Figo</h2>
+      <p class="local">Tatuapé</p>
+      <div class="frame">
+        <img src="fotos/figo.jpg" alt="Prato ao molho de tomate do Figo">
+      </div>
+      <p>O mais novo da lista: aberto em 2024 na zona leste, no Tatuapé, sob comando do chef Silas Gomes (ex-Fôrno e ex-Holy). Mistura pizza napolitana autoral com pratos quentes de inspiração variada — a pizza-assinatura leva figo em conserva, fior di latte e gorgonzola, mas quem busca esquentar de verdade pode ir no Carbonara Udon ou no arroz caldoso de frutos do mar com bisque de camarão.</p>
+      <p><strong>Endereço:</strong> Rua Itapeti, 24 — Tatuapé</p>
+      <a class="social" href="https://www.instagram.com/figo.br/">@figo.br</a>
+    </div>
+
+    <div class="sources">
+      Fontes: BaresSP · CNN Brasil Viagem &amp; Gastronomia · GoWhere · Gastronominho · Viva Tatuapé · Guia MICHELIN Brasil · Instagram oficial de cada restaurante
+    </div>
+
+  </article>
+
+</main>
+
+<footer>
+  Mesa em Foco — gastronomia Brasil &amp; Mundo · <a href="https://instagram.com/mesa.emfoco">@mesa.emfoco</a>
+</footer>
+
+<script>
+  const pageSearch = document.getElementById('pageSearch');
+  const article = document.querySelector('article');
+  const originalHTML = article.innerHTML;
+
+  pageSearch.addEventListener('input', () => {
+    const q = pageSearch.value.trim();
+    if(!q){ article.innerHTML = originalHTML; return; }
+    const regex = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    article.innerHTML = originalHTML.replace(regex, '<mark>$1</mark>');
+    const first = article.querySelector('mark');
+    if(first) first.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+</script>
+
+</body>
+</html>
