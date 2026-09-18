@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mesa em Foco — Cobertura Especial: Salão Abrasel + iFood Move</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500;1,9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFDF7;
+    --paper-dim:#F3EEE2;
+    --ink:#181410;
+    --ink-soft:#5c554c;
+    --chili:#E7412C;
+    --saffron:#D98C00;
+    --plum:#5B1F44;
+    --basil:#2B6A4C;
+    --buzz:#D6336C;
+    --navy:#212E56;
+    --rule: rgba(24,20,16,0.14);
+    --mark: #FCE8A8;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  mark{ background:var(--mark); color:var(--ink); padding:0 2px;}
+
+  /* MASTHEAD */
+  header.masthead{
+    padding:22px 24px 16px;
+    border-bottom:4px solid var(--ink);
+    background:var(--paper);
+    position:sticky; top:0; z-index:50;
+  }
+  .masthead-row{
+    max-width:900px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .back-link{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--ink-soft);
+  }
+  .wordmark-sm{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:1.5rem;
+    letter-spacing:-0.02em;
+  }
+  .wordmark-sm em{ font-style:italic; font-weight:500; color:var(--chili);}
+
+  /* IN-PAGE SEARCH */
+  .find-bar{
+    max-width:900px;
+    margin:0 auto;
+    padding-top:12px;
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .find-bar input{
+    flex:1;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    padding:9px 12px;
+    border:1.5px solid var(--ink);
+    background:var(--paper-dim);
+  }
+  .find-bar button{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    padding:9px 12px;
+    border:1.5px solid var(--ink);
+    background:var(--ink);
+    color:var(--paper);
+    cursor:pointer;
+  }
+  .find-status{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    color:var(--ink-soft);
+    max-width:900px;
+    margin:6px auto 0;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+
+  /* HERO */
+  .hero{
+    max-width:900px;
+    margin:0 auto;
+    padding:44px 24px 30px;
+  }
+  .hero .kicker{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--chili);
+    margin:0 0 14px;
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(2.2rem, 6vw, 3.6rem);
+    line-height:1.02;
+    margin:0 0 18px;
+    letter-spacing:-0.01em;
+  }
+  .hero .dek{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:1.25rem;
+    color:var(--ink-soft);
+    max-width:640px;
+    line-height:1.4;
+  }
+
+  /* STAT BANNER */
+  .stat-banner{
+    max-width:900px;
+    margin:0 auto 10px;
+    padding:0 24px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--ink);
+    border:1.5px solid var(--ink);
+  }
+  .stat{
+    background:var(--paper);
+    padding:20px 18px;
+  }
+  .stat .num{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:2rem;
+    line-height:1;
+  }
+  .stat .lbl{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+
+  /* NAV JUMP */
+  nav.toc{
+    max-width:900px;
+    margin:36px auto 0;
+    padding:0 24px;
+    display:flex;
+    gap:0;
+    flex-wrap:wrap;
+    border-top:1.5px solid var(--ink);
+    border-bottom:1.5px solid var(--ink);
+  }
+  nav.toc a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    text-decoration:none;
+    padding:12px 16px;
+    border-right:1px solid var(--rule);
+    color:var(--ink);
+  }
+  nav.toc a:last-child{border-right:none;}
+
+  /* SECTIONS */
+  section.block{
+    max-width:900px;
+    margin:0 auto;
+    padding:46px 24px 10px;
+    scroll-margin-top:110px;
+  }
+  .block-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:26px;
+    border-left:8px solid var(--section-color, var(--chili));
+    padding-left:16px;
+  }
+  .block-head .em{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  .block-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:1.9rem;
+    margin:0;
+  }
+
+  article.item{
+    margin-bottom:30px;
+    padding-bottom:28px;
+    border-bottom:1px solid var(--rule);
+  }
+  article.item:last-child{ border-bottom:none; }
+  article.item h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.3rem;
+    margin:0 0 10px;
+  }
+  article.item p{
+    font-size:0.98rem;
+    line-height:1.65;
+    color:var(--ink);
+    margin:0 0 10px;
+  }
+  .source-line{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+  }
+  .source-line b{ color:var(--ink); }
+
+  blockquote.pull{
+    border-left:4px solid var(--section-color, var(--chili));
+    background:var(--paper-dim);
+    padding:16px 18px;
+    margin:14px 0 16px;
+  }
+  blockquote.pull p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    margin:0 0 8px;
+    color:var(--ink);
+  }
+  blockquote.pull cite{
+    font-family:'JetBrains Mono', monospace;
+    font-style:normal;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+  }
+
+  table.agenda{
+    width:100%;
+    border-collapse:collapse;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem;
+    margin-top:6px;
+  }
+  table.agenda th{
+    text-align:left;
+    text-transform:uppercase;
+    font-size:0.68rem;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+    border-bottom:1.5px solid var(--ink);
+    padding:8px 6px;
+  }
+  table.agenda td{
+    padding:10px 6px;
+    border-bottom:1px solid var(--rule);
+  }
+
+  footer.colophon{
+    max-width:900px;
+    margin:60px auto 0;
+    padding:26px 24px 60px;
+    border-top:4px solid var(--ink);
+  }
+  footer.colophon p{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:560px){
+    nav.toc a{padding:10px 12px; font-size:0.66rem;}
+    .stat-banner{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-row">
+    <a href="index.html" class="back-link">← Arquivo</a>
+    <span class="wordmark-sm">Mesa em <em>Foco</em></span>
+    <span style="width:70px"></span>
+  </div>
+  <div class="find-bar">
+    <input type="text" id="pageSearch" placeholder="Buscar nesta edição: pessoa, restaurante, número, fonte…">
+    <button id="findBtn">Buscar</button>
+  </div>
+  <p class="find-status" id="findStatus"></p>
+</header>
+
+<div class="hero">
+  <p class="kicker">Cobertura Especial · 16 de setembro de 2026</p>
+  <h1>Salão Abrasel + iFood Move 2026: a semana que concentrou o setor em São Paulo</h1>
+  <p class="dek">Dois eventos, um atrás do outro — tecnologia, crédito, consolidação e identidade regional dominaram a pauta entre 15 e 17 de setembro.</p>
+</div>
+
+<div class="stat-banner">
+  <div class="stat"><div class="num">R$ 24 bi</div><div class="lbl">Investimento anunciado pelo iFood (+41%)</div></div>
+  <div class="stat"><div class="num">R$ 540 bi</div><div class="lbl">Projeção do setor de alimentação fora do lar em 2026</div></div>
+  <div class="stat"><div class="num">10ª</div><div class="lbl">Edição do concurso O Quilo é Nosso</div></div>
+</div>
+
+<nav class="toc">
+  <a href="#intro">Panorama</a>
+  <a href="#abrasel">Salão Abrasel</a>
+  <a href="#ifood">iFood Move</a>
+  <a href="#resumo">O que fica</a>
+</nav>
+
+<!-- INTRO -->
+<section class="block" id="intro" style="--section-color:var(--navy)">
+  <article class="item">
+    <p>Entre 15 e 17 de setembro, São Paulo virou a capital da alimentação fora do lar do país. Dois eventos, um atrás do outro, na mesma região da cidade (a Bienal do Ibirapuera e o São Paulo Expo, conectados por transfer gratuito): o <b>Salão Abrasel</b>, primeira edição de um evento bienal que celebra os 40 anos da entidade, e o <b>iFood Move</b>, em sua 3ª edição e já com ingressos esgotados. Juntos, os dois eventos resumem bem pra onde o setor está indo — tecnologia, crédito, consolidação e cada vez mais dados guiando decisão de negócio.</p>
+  </article>
+</section>
+
+<!-- SALÃO ABRASEL -->
+<section class="block" id="abrasel" style="--section-color:var(--chili)">
+  <div class="block-head"><span class="em">01</span><h2>Salão Abrasel</h2></div>
+
+  <article class="item">
+    <h3>O ecossistema aberto da alimentação fora do lar</h3>
+    <p>Realizado nos dias 15 e 16 de setembro, no Pavilhão Ciccillo Matarazzo (Parque Ibirapuera), o Salão Abrasel nasceu como uma resposta a um setor que já projeta gerar R$ 540 bilhões em 2026. Apresentado por Ambev, Keeta e Stone, reuniu mais de 50 expositores de tecnologia, equipamentos, pagamento e logística, com expectativa de 12 mil visitantes ao longo dos dois dias.</p>
+  </article>
+
+  <article class="item">
+    <h3>O grande momento: final do "O Quilo é Nosso"</h3>
+    <p>O destaque emocional do evento foi a final da 10ª edição do concurso O Quilo é Nosso, que elege o melhor restaurante a quilo do Brasil — um formato genuinamente brasileiro. Quinze restaurantes, vencedores de suas etapas estaduais, prepararam seus pratos na véspera (14/09), na Universidade Anhembi Morumbi, diante de um júri técnico.</p>
+    <p>O grande vencedor: o <b>Restaurante Maria Izabel</b>, de Palmas (TO), com o prato "Tocantins no Prato" — um chambari com aipim, criado pela chef Regiane Cardoso.</p>
+    <blockquote class="pull">
+      <p>"Ganhar esse prêmio está me trazendo a melhor sensação que já senti desde que abri o restaurante. Eu faço essa comida com muito amor."</p>
+      <cite>Regiane Cardoso — Chef do Restaurante Maria Izabel</cite>
+    </blockquote>
+    <blockquote class="pull">
+      <p>"O Quilo é Nosso chega aos dez anos mostrando a força de um modelo que faz parte da rotina dos brasileiros e que, ao mesmo tempo, permite uma enorme diversidade de sabores, ingredientes e histórias."</p>
+      <cite>Paulo Solmucci — Presidente-executivo da Abrasel</cite>
+    </blockquote>
+  </article>
+
+  <article class="item">
+    <h3>Cozinha 4.0: tecnologia sem substituir gente</h3>
+    <p>O espaço "Restaurante do Futuro — Cozinha 4.0" mostrou na prática como ferramentas de IA ajudam a integrar estoque, compras e produção — incluindo um equipamento que cozinha macarrão sozinho e avisa quando está pronto. Segundo o curador Jonas Romero, a proposta não é substituir mão de obra, mas reorganizar o trabalho dentro da cozinha.</p>
+    <p class="source-line">Fontes: <b>Jornal Opção</b> · Brasil de Fé</p>
+  </article>
+</section>
+
+<!-- IFOOD MOVE -->
+<section class="block" id="ifood" style="--section-color:var(--plum)">
+  <div class="block-head"><span class="em">02</span><h2>iFood Move</h2></div>
+
+  <article class="item">
+    <h3>A bomba dos R$ 24 bilhões</h3>
+    <p>Já na abertura da 3ª edição do iFood Move (16 e 17/09, São Paulo Expo, com ingressos esgotados), o CEO Diego Barreto soltou o anúncio que dominou o noticiário do dia: o iFood vai investir R$ 24 bilhões no Brasil entre abril de 2026 e março de 2027 — alta de 41% sobre os R$ 17 bilhões do ciclo anterior.</p>
+    <blockquote class="pull">
+      <p>"A gente está saindo de um investimento do ano anterior, que foi anunciado aqui, de 17 bilhões de reais, e estamos subindo os investimentos desse ano para 24 bilhões de reais."</p>
+      <cite>Diego Barreto — CEO do iFood</cite>
+    </blockquote>
+  </article>
+
+  <article class="item">
+    <h3>Pra onde vai o dinheiro</h3>
+    <p>O reforço de R$ 7 bilhões será direcionado a produtos que já mostraram resultado em testes internos: o Turbo (entrega em até 20 minutos), o Hits (refeições sem taxa de entrega) e uma ferramenta nova, lançada nesta edição, o "Comer Fora", pensada para gerar tráfego para o salão dos restaurantes — não só delivery.</p>
+    <p>O iFood Pago, braço financeiro da empresa, deve crescer 70% neste ano, puxado principalmente pela concessão de crédito a restaurantes sem acesso a bancos tradicionais. Segundo Barreto, o iFood usa dados de operação — horário de funcionamento, giro de cardápio, taxa de cancelamento, avaliação de cliente — para avaliar risco de crédito de um jeito que o sistema bancário tradicional não consegue.</p>
+    <blockquote class="pull">
+      <p>"A gente tem a capacidade de enxergar a operação de vocês. Abre muitas horas, aumenta o número de turnos, sabe trabalhar o cardápio para vender melhor e reduzir o estoque, sabe trabalhar muito bem cancelamento, ruptura, avaliação de cliente. Então esse cara é bom, esse cara não vai ser um problema de inadimplência."</p>
+      <cite>Diego Barreto — CEO do iFood</cite>
+    </blockquote>
+  </article>
+
+  <article class="item">
+    <h3>Expansão pra além do restaurante</h3>
+    <p>Pela primeira vez, o iFood Move abriu espaço pra varejo — farmácia, mercado, pet, bebidas e conveniência — com trilha e palco exclusivos curados pela BTR Varese. A companhia hoje conecta 65 milhões de consumidores, 500 mil estabelecimentos em mais de 2.000 cidades e 600 mil entregadores, com volume mensal acima de 180 milhões de pedidos.</p>
+    <p class="source-line">Fonte: cobertura do evento</p>
+  </article>
+</section>
+
+<!-- RESUMO -->
+<section class="block" id="resumo" style="--section-color:var(--navy)">
+  <div class="block-head"><span class="em">03</span><h2>O que fica dessa semana</h2></div>
+  <table class="agenda">
+    <thead><tr><th>Evento</th><th>O que trouxe de mais importante</th></tr></thead>
+    <tbody>
+      <tr><td>Salão Abrasel</td><td>Consolidação do setor (R$ 540 bi projetados) + celebração de identidade regional (Quilo é Nosso)</td></tr>
+      <tr><td>Cozinha 4.0</td><td>IA prática no dia a dia da cozinha, sem substituir equipe</td></tr>
+      <tr><td>iFood Move</td><td>R$ 24 bi em investimento (+41%), crédito via dados de operação, expansão pra varejo</td></tr>
+    </tbody>
+  </table>
+  <article class="item" style="margin-top:24px;">
+    <p>A leitura no fim das contas: 2026 é o ano em que tecnologia, crédito e dado deixam de ser "tendência" e viram operação de fato — tanto pro pequeno restaurante a quilo quanto pra gigante do delivery.</p>
+  </article>
+</section>
+
+<footer class="colophon">
+  <p>Mesa em Foco — cobertura especial · próxima edição: sexta-feira, recap da semana completa</p>
+</footer>
+
+<script>
+  const input = document.getElementById('pageSearch');
+  const btn = document.getElementById('findBtn');
+  const status = document.getElementById('findStatus');
+  const container = document.querySelector('body');
+  let originalHTML = null;
+  let matches = [];
+  let currentIndex = -1;
+
+  function clearHighlights(){
+    document.querySelectorAll('mark.js-hit').forEach(m => {
+      const parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+
+  function runSearch(){
+    clearHighlights();
+    matches = [];
+    currentIndex = -1;
+    const term = input.value.trim();
+    if(term.length < 2){ status.textContent = ''; return; }
+
+    const walker = document.createTreeWalker(
+      document.querySelector('main, .hero, section.block, footer.colophon') ? document.body : document.body,
+      NodeFilter.SHOW_TEXT,
+      { acceptNode: node => {
+          if(!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          if(node.parentNode.closest('header, script, style, input, button')) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }}
+    );
+
+    const regex = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
+    const nodes = [];
+    let n;
+    while(n = walker.nextNode()) nodes.push(n);
+
+    nodes.forEach(node => {
+      if(!regex.test(node.nodeValue)) return;
+      regex.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let lastIndex = 0;
+      let m;
+      while((m = regex.exec(node.nodeValue)) !== null){
+        frag.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex, m.index)));
+        const mark = document.createElement('mark');
+        mark.className = 'js-hit';
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        matches.push(mark);
+        lastIndex = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex)));
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    if(matches.length){
+      currentIndex = 0;
+      matches[0].scrollIntoView({behavior:'smooth', block:'center'});
+      status.textContent = matches.length + ' ocorrência(s) encontrada(s) — Enter para navegar';
+    } else {
+      status.textContent = 'Nenhuma ocorrência encontrada nesta edição';
+    }
+  }
+
+  btn.addEventListener('click', runSearch);
+  input.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+      if(matches.length && currentIndex >= 0){
+        currentIndex = (currentIndex + 1) % matches.length;
+        matches[currentIndex].scrollIntoView({behavior:'smooth', block:'center'});
+        status.textContent = 'Ocorrência ' + (currentIndex+1) + ' de ' + matches.length;
+      } else {
+        runSearch();
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
